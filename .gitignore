@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
 /dist
-/release
-/README.md
+#/release
+README.md
 # local env files
 .env.local
 .env.*.local
