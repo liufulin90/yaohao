@@ -101,10 +101,10 @@
           <li :class="" data-district="主城区" @click="tapLabel">主城区</li>
           <li :class="" data-district="郊区" @click="tapLabel">郊区</li>
         </ul>
-        <!--1 即将预售； 2 正在报名； 3 报名结束； 5 正在摇号； 6 已摇号-->
+        <!--1 即将预售； 2 正在报名； 3 报名结束； 4 已复核； 5 正在摇号； 6 已摇号-->
         <ul>
-          <li :class="" data-status="5" @click="tapLabel">最新摇号</li>
-          <li :class="" data-status="2" @click="tapLabel">最新报名</li>
+          <li :class="" data-status="4,5,6" @click="tapLabel">最新摇号</li>
+          <li :class="" data-status="2,3" @click="tapLabel">最新报名</li>
           <li :class="" data-status="1" @click="tapLabel">最新预售</li>
           <li class="notdata"></li>
         </ul>
@@ -155,9 +155,8 @@
       return {
         navPage: 1,
         isSearch: false,
-        status: '', // 状态 1 即将预售； 2 正在报名； 3 报名结束； 5 正在摇号； 6 已摇号
+        status: '', // 状态 1 即将预售； 2 正在报名； 3 报名结束； 4 已复核； 5 正在摇号； 6 已摇号
         district: '', // 区县，可传值： 天府新区，高新区，主城区，郊区
-        labelMap: [1, 2, 5, '天府新区', '高新区', '主城区', '郊区'],
         page: 1,
         hasMore: true, // 滚动页面是否还有更多内容
         list: [],

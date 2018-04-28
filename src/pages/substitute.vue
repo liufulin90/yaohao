@@ -11,7 +11,6 @@
            preview-nav-enable="true"
            alt=""
            key="">
-      <lg-preview></lg-preview>
     </div>
   </div>
 </template>
