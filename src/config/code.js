@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2017 QIANKUN HANLIN Corporation Limited
  *
  * 服务器返回所有的状态码定义文件
  */

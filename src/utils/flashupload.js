@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2017 QIANKUN HANLIN Corporation Limited
  *
  * flash 上传
  */

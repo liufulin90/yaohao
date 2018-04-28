@@ -1,6 +1,4 @@
 /*
- * Copyright (C) 2017 QIANKUN HANLIN Corporation Limited
- *
  * 所有外部接口配置路径
  */
 const apiUrlConfig = () => {

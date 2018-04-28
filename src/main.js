@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2017 QIANKUN HANLIN Corporation Limited
  *
  * 整个应用的入口文件
  */

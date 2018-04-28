@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2017 QIANKUN HANLIN Corporation Limited
  *
  * 用户相关信息service
  */

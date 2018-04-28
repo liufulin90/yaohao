@@ -1,4 +1,3 @@
-<!--Copyright (C) 2017 QIANKUN HANLIN Corporation Limited-->
 <!--主页-->
 <template>
     <div class="body-wrapper fix-wrapper">
