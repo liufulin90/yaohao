@@ -1,0 +1,84 @@
+/*
+ * Copyright (C) 2017 QIANKUN HANLIN Corporation Limited
+ * 全局 css内容
+ */
+@import './base';
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #222;
+}
+
+html, body, * {
+  padding: 0;
+  margin: 0;
+}
+*:not(input) {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+}
+ul, li {
+  list-style: none;
+}
+
+a {
+  color: $BASE_FONT_COLOR;
+  text-decoration: none;
+  outline: none;
+}
+a:focus,
+a:hover{
+  text-decoration: none;
+}
+img{
+  border: none;
+}
+.global-bg {
+  background-color: $CORLOR_BG;
+}
+
+.t-c {
+  text-align: center;
+}
+
+.t-l {
+  text-align: left;
+}
+
+.t-r {
+  text-align: right;
+}
+
+.pading-10 {
+  padding: 10px;
+}
+.pading-t10 {
+  padding-top: 10px;
+}
+.pading-t20 {
+  padding-top: 20px;
+}
+
+.pading-b20 {
+  padding-bottom: 20px;
+}
+.pading-b10 {
+  padding-bottom: 10px;
+}
+.pading-tb20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.pading-20-10 {
+  padding: 20px 10px;
+}
+
+.with100 {
+  width: 100%;
+}

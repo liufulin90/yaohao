@@ -1,0 +1,45 @@
+
+@font-face {
+  font-family: "iconfont";
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-kanguo:before { content: "\e65e"; }
+
+.icon-xiangji:before { content: "\e672"; }
+
+.icon-youji:before { content: "\e675"; }
+
+.icon-zan:before { content: "\e677"; }
+
+.icon-gouwu:before { content: "\e680"; }
+
+.icon-shouji:before { content: "\e692"; }
+
+.icon-tupian:before { content: "\e695"; }
+
+.icon-zonghe:before { content: "\e69e"; }
+
+.icon-fenxiang:before { content: "\e6a5"; }
+
+.icon-pinglun:before { content: "\e6ad"; }
+
+.icon-bianji:before { content: "\e6b0"; }
+
+.icon-haoping:before { content: "\e6c6"; }
+
+.icon-shouye:before { content: "\e6cb"; }
+
+.icon-zanfill:before { content: "\e6ce"; }
+
+.icon-zans:before { content: "\e719"; }
+
+.icon-weizhi:before { content: "\e8ff"; }
+

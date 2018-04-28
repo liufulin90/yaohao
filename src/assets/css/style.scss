@@ -1,0 +1,354 @@
+/*
+ * Copyright (C) 2017 QIANKUN HANLIN Corporation Limited
+ * 所有css 入口及内容
+ */
+//@import "./bootstrap.css";
+@import "./iconfont.css";
+@import "./weui.custom.min.css";
+@import "./global";
+$fontSize18: 18px;
+$fontColor1: #222;// 页面title字体颜色
+$baseColor1: #767676;// 取消按钮背景颜色
+$baseColor2: #fff;// 背景,选项卡背景颜色
+$baseColor3: #63bd70;// 确定按钮的颜色
+$baseColor4: #d3d3d3;// 边框线的颜色
+$baseColor5: #6e6e6e;// 取消按钮按下时背景颜色
+$bgColor1: #91a0a0;// 表格行头背景颜色
+// 间距
+$distance40: 40px;
+$distance32: 32px;
+$distance30: 30px;
+
+body {
+  overflow: auto;
+  width: 100%;
+}
+.main {
+  position: relative;
+  width: 100%;
+  float: left;
+}
+/*共通的楼盘状态status*/
+.baseStatus {
+  font-size: 12px;
+  border: 1px solid $BASE_ACTIVE_COLOR;
+  border-radius: 5px;
+  padding: 1px 2px;
+  font-size: 12px;
+}
+
+/* 底部 */
+.footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  background-color: #f0f0f0;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 999;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $BASE_FONT_COLOR;
+  .footer-title {
+    font-weight: bold;
+  }
+  .nav-icon {
+    >div{
+      width: 27px;
+      height: 27px;
+      background-size: 27px 27px;
+    }
+    &.nav-home-normal {
+      >div{
+        background-image: url("../icons/home-normal.svg");
+      }
+    }
+    &.nav-home-normal:active,
+    &.nav-home-active {
+      >div {
+        background-image: url("../icons/home-active.svg");
+      }
+    }
+
+    &.my-shake-normal {
+      >div{
+        background-image: url("../icons/my-shake-normal.png");
+      }
+    }
+    &.my-shake-normal:active,
+    &.my-shake-active {
+      >div {
+        background-image: url("../icons/my-shake-active.png");
+      }
+    }
+    &.nav-info-normal {
+      >div{
+        background-image: url("../icons/info-normal.svg");
+      }
+    }
+    &.nav-info-normal:active,
+    &.nav-info-active {
+      >div {
+        background-image: url("../icons/info-active.svg");
+      }
+    }
+    &.nav-my-normal {
+      >div{
+        background-image: url("../icons/my-normal.svg");
+      }
+    }
+    &.nav-my-normal:active,
+    &.nav-my-active {
+      >div {
+        background-image: url("../icons/my-active.svg");
+      }
+    }
+    &.nav-home-normal:active,
+    &.my-shake-normal:active,
+    &.nav-info-normal:active,
+    &.nav-my-normal:active,
+    &.nav-my-active,
+    &.nav-info-active,
+    &.nav-home-active,
+    &.my-shake-active{
+      +p{
+        color: $BASE_ACTIVE_COLOR;
+      }
+    }
+  }
+}
+
+/* 共通内容部分 begin */
+.fix-wrapper {
+  padding-bottom: 49px;
+}
+#information img,
+#substitute img{
+  max-width: 100%;
+}
+.body-wrapper {
+  position: relative;
+  // 楼盘列表
+  .projectlist {
+    &.weui-panel {
+      .weui-panel__bd {
+        .weui-media-box__hd{
+          width: 100px;
+          height: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .weui-media-box__bd{
+          .weui-media-box__title{
+            font-size: initial;
+            color: $BASE_FONT_COLOR;
+            margin-bottom: 5px;
+          }
+          .item_status{
+            .status{
+              @extend .baseStatus;
+              color: $BASE_ACTIVE_COLOR;
+            }
+          }
+          >div{
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+  }
+  // 搜索框
+  .weui-search-bar__cancel-btn{
+    color: $BASE_ACTIVE_COLOR;
+  }
+  // 导航栏
+  .weui-navbar {
+    .weui_bar__item_on {
+      color: $BASE_ACTIVE_COLOR;
+    }
+  }
+  .custom-panel{
+    padding-left: 10px;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 15px;
+    padding-top: 5px;
+  }
+}
+/* 共通内容部分 end */
+/**主页*/
+.banner {
+  width: 100%;
+  .swiper-container{
+    .swiper-slide {
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      a {
+        display: block;
+        width: 100%;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      .slide-tips {
+        position: absolute;
+        bottom: 0px;
+        color: white;
+        background: rgba(0,0,0,.2);
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        display: flex;
+      }
+    }
+    .swiper-pagination{
+      bottom: 4px;
+      .swiper-pagination-bullet-active {
+        background: $BASE_ACTIVE_COLOR;
+      }
+    }
+  }
+}
+/*项目基本详情*/
+.project-wrap {
+  .project-title{
+    margin-top: 0;
+    &:after{
+      border-top: none;
+    }
+    .weui-cell{
+      display: block;
+      .weui-cell__hd {
+        .weui-label {
+          width: 100%;
+        }
+      }
+    }
+    .status{
+      width: 100%;
+      color: $BASE_ACTIVE_COLOR;
+      span {
+        display: inline-block;
+        margin: 3px;
+        @extend .baseStatus
+      }
+    }
+  }
+  .project-pic img {
+    width: 100%;
+    max-height: 200px;
+  }
+}
+.project-wrap,
+.news-wrap {
+  .weui-form-preview{
+    .weui-form-preview__btn_primary{
+      color: $BASE_ACTIVE_COLOR;
+    }
+  }
+  .cell-nav{
+    a:hover,a:focus{
+      color: $BASE_FONT_COLOR;
+    }
+    .weui-cell__bd{
+      font-size: 14px;
+      color: $BASE_ACTIVE_COLOR;
+    }
+  }
+}
+/*楼盘检索画面*/
+.status-label{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid $BASE_BORDER_COLOR;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    li{
+      width: 80px;
+      text-align: center;
+      border: 1px solid #cccccc;
+      padding: 3px 10px;
+      border-radius: 10px;
+      &.notdata{
+        border: none;
+      }
+      &.active {
+        color: white;
+        border-color: $BASE_ACTIVE_COLOR;
+        background-color: $BASE_ACTIVE_COLOR;
+      }
+    }
+  }
+}
+/*个人资料*/
+.personal-wrap{
+  a{
+    &:focus, &:hover{
+      color: $BASE_FONT_COLOR;
+    }
+  }
+}
+.personal-info-wrap{
+  min-height: 100vh;
+  background: #f9f9f9;
+  .infotop{
+    font-size: 14px;
+    span{
+      padding: 4px;
+    }
+  }
+  .info-list{
+    .infoname{
+      color: #222222;
+    }
+    .infoname,
+    span{
+      pointer-events: none;
+    }
+  }
+  .weui-cells_form .weui-cell__hd .weui-label{
+    font-weight: normal;
+    width: 75px;
+  }
+  .infobutton{
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    a{
+      width: 30%;
+      font-size: 14px;
+      &.weui-btn_primary{
+        background-color: $BASE_ACTIVE_COLOR;
+      }
+      &.weui-btn_primary:not(.weui-btn_disabled):active{
+        background-color: $BASE_TAP_COLOR;
+      }
+      &.weui-btn_default{
+
+      }
+      &.weui-btn {
+        margin-top: 0;
+      }
+      &:focus, &:hover{
+        color: white;
+      }
+      &:first-child:focus, &:first-child:hover{
+        color: $BASE_FONT_COLOR;
+      }
+    }
+
+  }
+  .weui-cell .weui-label{
+    margin: 2px 0;
+  }
+  .weui-cell:first-child::before {
+    display: block;
+  }
+}
+
+
