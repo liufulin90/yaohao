@@ -5,7 +5,6 @@
  */
 import 'babel-polyfill' // 解决IE浏览器不支持promise以及object.assign等
 import Vue from 'vue'
-// import Vum from 'vum'
 import VueRouter from 'vue-router'
 import routes from './router/'
 import store from './store'
@@ -14,10 +13,22 @@ import store from './store'
 import { USER_LOCALSTORAGE_KEY } from './config/'
 import components from './components/' // 加载公共组件
 
-// 其他组件
-import vuePreview from './components/preview/'
-Vue.use(vuePreview)
-// Vue.use(Vum)
+// 图片预览组件
+import VuePreview from 'vue-preview'
+// // defalut install
+// // Vue.use(VuePreview)
+// // with parameters install
+Vue.use(VuePreview, {
+  mainClass: 'pswp--minimal--dark',
+  barsSize: {top: 0, bottom: 0},
+  captionEl: false,
+  fullscreenEl: false,
+  shareEl: false,
+  bgOpacity: 0.85,
+  tapToClose: true,
+  tapToToggleControls: false
+})
+
 /* eslint-disable no-new */
 Vue.config.silent = false // true取消 Vue 所有的日志与警告。
 

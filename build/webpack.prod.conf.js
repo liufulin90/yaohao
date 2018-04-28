@@ -36,8 +36,12 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,        //去掉注释
+      beautify: false, // 最紧凑的输出
       compress: {
-        warnings: false
+        warnings: false, // 在UglifyJs删除没有用到的代码时不输出警告
+        drop_console: true,  // 删除所有的 `console` 语句
+        collapse_vars: true, // 内嵌定义了但是只用到一次的变量
+        reduce_vars: true, // 提取出出现多次但是没有定义成变量去引用的静态值
       }
     }),
     // extract css into its own file
@@ -63,6 +67,10 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
+      // 打包到多个文件
+      names: ['vendor6', 'vendor5', 'vendor4', 'vendor3', 'vendor2', 'vendor1'],
+      minChunks: Infinity
+      /* 打包到一个文件
       name: 'vendor',
       minChunks: function (module, count) {
         // any required modules inside node_modules are extracted to vendor
@@ -74,6 +82,7 @@ var webpackConfig = merge(baseWebpackConfig, {
           ) === 0
         )
       }
+      */
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated

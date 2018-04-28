@@ -15,6 +15,12 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
+    'vendor1': ['vue'],
+    'vendor2': ['vue-router'],
+    'vendor3': ['vuex'],
+    'vendor4': ['jquery'],
+    'vendor5': ['vue-awesome-swiper'],
+    'vendor6': ['vue-preview'],
     app: './src/main.js'
   },
   output: {
