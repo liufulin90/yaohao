@@ -485,16 +485,19 @@ body {
 /*楼盘检索画面*/
 .status-label {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: -1px;
   border-bottom: 1px solid #f5f5f5; }
   .status-label ul {
     display: flex;
-    justify-content: space-around; }
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 0; }
     .status-label ul li {
-      width: 80px;
+      width: 22%;
       text-align: center;
       border: 1px solid #cccccc;
-      padding: 3px 10px;
+      padding: 3px 1%;
+      margin-bottom: 10px;
       border-radius: 10px; }
       .status-label ul li.notdata {
         border: none; }
@@ -544,4 +547,4 @@ body {
   .personal-info-wrap .weui-cell:first-child::before {
     display: block; }
 
-/*# sourceMappingURL=app.ec3876815366b41e02c7b87ad9467a0a.css.map*/
+/*# sourceMappingURL=app.0960b1d0762ee142ed29421887fa0cc1.css.map*/
