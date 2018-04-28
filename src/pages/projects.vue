@@ -114,6 +114,16 @@
         })
       }
     },
+    beforeRouteLeave (to, from, next) {
+      if (to.name === 'projectDetail' || to.name === 'shakeResult') {
+        // 设置下一个路由的 meta
+        from.meta.keepAlive = true
+      } else {
+        // 设置下一个路由的 meta
+        from.meta.keepAlive = false
+      }
+      next()
+    },
     methods: {
       ...mapActions([CHANGE_PENDING, CHANGE_TOAST, PROJECT_INFO]),
       tapSearch () {

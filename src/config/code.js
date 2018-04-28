@@ -16,23 +16,57 @@ export const NOT_LOGIN_CODE = 40100 // 未登录
 export const NOT_LOGIN_STATUS = 401// 未登录
 
 // 1 即将预售； 2 正在报名； 3 报名结束； 4 已复核； 5 正在摇号； 6 已摇号
-export const STATUS_1 = 1
-export const STATUS_1_TEXT = '即将预售'
-
-export const STATUS_2 = 2
-export const STATUS_2_TEXT = '正在报名'
-
-export const STATUS_3 = 3
-export const STATUS_3_TEXT = '报名结束'
-
-export const STATUS_4 = 4
-export const STATUS_4_TEXT = '已复核'
-
-export const STATUS_5 = 5
-export const STATUS_5_TEXT = '正在摇号'
-
-export const STATUS_6 = 6
-export const STATUS_6_TEXT = '已摇号'
+/*
+ 标签按这个组合查询：
+ 1. 即将预售 2. 开始报名  =》 最新报名
+ 3. 现场核验 4. 资料复核 =》 最新核验
+ 5. 即将摇号 6. 摇号中 7. 摇号结束 =》 最新摇号
+ */
+export const STATUS_MAPPING = {
+  status1: {
+    code: 1,
+    text: '即将预售'
+  },
+  status2: {
+    code: 2,
+    text: '开始报名'
+  },
+  status3: {
+    code: 3,
+    text: '即将预售'
+  },
+  status4: {
+    code: 4,
+    text: '资料复核'
+  },
+  status5: {
+    code: 5,
+    text: '即将摇号'
+  },
+  status6: {
+    code: 6,
+    text: '摇号中'
+  },
+  status7: {
+    code: 7,
+    text: '摇号结束'
+  }
+}
+export const HOME_STATUS_MAPPING = [
+  {
+    codes: `${STATUS_MAPPING.status1.code},${STATUS_MAPPING.status2.code}`,
+    text: '最新报名'
+  },
+  {
+    codes: `${STATUS_MAPPING.status3.code},${STATUS_MAPPING.status4.code}`,
+    text: '最新核验'
+  },
+  {
+    codes: `${STATUS_MAPPING.status5.code},${STATUS_MAPPING.status6.code},${STATUS_MAPPING.status7.code}`,
+    text: '最新摇号'
+  }
+]
+export const HOME_ADDR_MAP = ['天府新区', '高新区', '主城区', '郊区']
 
 export const PROJECT_BASE_INFO_KEY = '基础信息'
 export const PROJECT_SEVICE_INFO_KEY = '物业信息'

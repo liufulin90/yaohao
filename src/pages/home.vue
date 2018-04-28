@@ -94,18 +94,10 @@
         </a>-->
       </div>
       <!-- 卡片 end-->
-      <div class="status-label" id="statusLabel" style="padding: 10px 0;margin-bottom: -1px;">
+      <div class="status-label" id="statusLabel" style="padding: 10px 0;">
         <ul>
-          <li :class="" data-district="天府新区" @click="tapLabel">天府新区</li>
-          <li :class="" data-district="高新区" @click="tapLabel">高新区</li>
-          <li :class="" data-district="主城区" @click="tapLabel">主城区</li>
-          <li :class="" data-district="郊区" @click="tapLabel">郊区</li>
-        </ul>
-        <!--1 即将预售； 2 正在报名； 3 报名结束； 4 已复核； 5 正在摇号； 6 已摇号-->
-        <ul>
-          <li :class="" data-status="4,5,6" @click="tapLabel">最新摇号</li>
-          <li :class="" data-status="2,3" @click="tapLabel">最新报名</li>
-          <li :class="" data-status="1" @click="tapLabel">最新预售</li>
+          <li :class="" :data-district="addr" @click="tapLabel" v-for="addr in addrMap">{{addr}}</li>
+          <li :class="" :data-status="it.codes" @click="tapLabel" v-for="it in statusMapping">{{it.text}}</li>
           <li class="notdata"></li>
         </ul>
       </div>
@@ -160,6 +152,8 @@
         page: 1,
         hasMore: true, // 滚动页面是否还有更多内容
         list: [],
+        addrMap: CODE.HOME_ADDR_MAP,
+        statusMapping: CODE.HOME_STATUS_MAPPING,
         swiperOption: {
           pagination: {
             el: '.swiper-pagination'

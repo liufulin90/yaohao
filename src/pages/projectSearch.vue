@@ -16,26 +16,23 @@
       <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancleSearch" id="searchCancel">取消</a>
     </div>
     <div class="status-label" id="searchLabels">
+      <!--1 即将预售； 2 正在报名； 3 报名结束； 4 已复核； 5 正在摇号； 6 已摇号-->
       <ul>
-        <li :class="" data-district="天府新区" @click="tapLabel">天府新区</li>
+        <li :class="" :data-district="addr" @click="tapLabel" v-for="addr in addrMap">{{addr}}</li>
+        <li :class="status == 5 && it.code == 5 ? 'active' : ''" :data-status="it.code" @click="tapLabel" v-for="it in statusMap">{{it.text}}</li>
+
+        <!--<li :class="" data-district="天府新区" @click="tapLabel">天府新区</li>
         <li :class="" data-district="高新区" @click="tapLabel">高新区</li>
         <li :class="" data-district="主城区" @click="tapLabel">主城区</li>
         <li :class="" data-district="郊区" @click="tapLabel">郊区</li>
-      </ul>
-      <!--1 即将预售； 2 正在报名； 3 报名结束； 4 已复核； 5 正在摇号； 6 已摇号-->
-      <ul>
         <li :class="" data-status="1" @click="tapLabel">即将预售</li>
         <li :class="" data-status="2" @click="tapLabel">正在报名</li>
         <li :class="" data-status="3" @click="tapLabel">报名结束</li>
         <li :class="" data-status="4" @click="tapLabel">已复核</li>
-      </ul>
-      <ul>
         <li :class="status == 5 ? 'active' : ''" data-status="5" @click="tapLabel">正在摇号</li>
-        <li :class="" data-status="6" @click="tapLabel">已摇号</li>
+        <li :class="" data-status="6" @click="tapLabel">已摇号</li>-->
         <li class="notdata"></li>
         <li class="notdata"></li>
-      </ul>
-      <ul>
       </ul>
     </div>
     <!--<h5 class="custom-panel">{{statusText}}</h5>-->
@@ -83,6 +80,8 @@
         keyword: '',
         page: 1,
         hasMore: true, // 滚动页面是否还有更多内容
+        addrMap: CODE.HOME_ADDR_MAP,
+        statusMap: CODE.STATUS_MAPPING,
         list: [
 //          {
 //            pid: 1,
@@ -126,6 +125,16 @@
     },
     beforeDestroy () {
       $(window).unbind('scroll', scrollFun)
+    },
+    beforeRouteLeave (to, from, next) {
+      if (to.name === 'projects') {
+        // 设置下一个路由的 meta
+        from.meta.keepAlive = true
+      } else {
+        // 设置下一个路由的 meta
+        from.meta.keepAlive = false
+      }
+      next()
     },
     methods: {
       ...mapActions([PROJECT_LIST, CHANGE_PENDING, CHANGE_TOAST]),
@@ -224,5 +233,4 @@
   }
 </script>
 <style>
-
 </style>

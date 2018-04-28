@@ -261,18 +261,21 @@ body {
   }
 }
 /*楼盘检索画面*/
-.status-label{
+.status-label {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: -1px;
   border-bottom: 1px solid $BASE_BORDER_COLOR;
   ul {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
+    margin-bottom: 0;
     li{
-      width: 80px;
+      width: 22%;
       text-align: center;
       border: 1px solid #cccccc;
-      padding: 3px 10px;
+      padding: 3px 1%;
+      margin-bottom: 10px;
       border-radius: 10px;
       &.notdata{
         border: none;

@@ -59,7 +59,7 @@ const Ajax = ({url, method = 'POST', data = '', timeout = 20000, async = true, d
       // 没有登录则跳转到登录页面
       if (res.status === CODE.NOT_LOGIN_STATUS || res && res.responseJSON && res.responseJSON.code === CODE.NOT_LOGIN_CODE) {
         globalErrorPrint(res)
-        location.href = '/#/login'
+        location.href = '/#/index'
       } else {
         defer.resolve(res)
       }
