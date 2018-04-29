@@ -353,4 +353,36 @@ body {
   }
 }
 
+// 楼盘相册
 
+img{
+  max-width: 100%;
+}
+#photo-list-wrap {
+  .weui-panel{
+    &:after{
+      border-bottom: none;
+    }
+  }
+  .weui-media-box_text {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    .views {
+      >div.my-gallery{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      figure{
+        width: 31.3%;
+        margin: 0 1% 10px;
+      }
+      img{
+        max-width: 100%;
+      }
+    }
+  }
+}

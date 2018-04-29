@@ -94,6 +94,15 @@ export default [
     component: resolve => require(['../pages/projectDetail'], resolve)
   },
   {
+    path: '/projectPhotoList', // 楼盘相册
+    name: 'projectPhotoList',
+    meta: {
+      auth: false,
+      title: '楼盘相册'
+    },
+    component: resolve => require(['../pages/projectPhotoList'], resolve)
+  },
+  {
     path: '/contactAdvisor', // 联系置业顾问
     name: 'contactAdvisor',
     meta: {

@@ -48,7 +48,7 @@
         <router-link :to="{ name: 'projectDetail', query: {pid: pid }}" class="weui-form-preview__btn weui-form-preview__btn_primary">
           查看详情
         </router-link>
-        <router-link v-show="false" :to="{ name: 'contactAdvisor', query: {pid: pid }}" class="weui-form-preview__btn weui-form-preview__btn_primary">
+        <router-link :to="{ name: 'projectPhotoList', query: {pid: pid }}" class="weui-form-preview__btn weui-form-preview__btn_primary">
           户型图
         </router-link>
         <router-link v-show="false" :to="{ name: 'contactAdvisor', query: {pid: pid }}" class="weui-form-preview__btn weui-form-preview__btn_primary">
@@ -115,13 +115,15 @@
       }
     },
     beforeRouteLeave (to, from, next) {
-      if (to.name === 'projectDetail' || to.name === 'shakeResult') {
+      /*
+      if (to.name === 'projectDetail' || to.name === 'shakeResult' || to.name === 'projectPhotoList') {
         // 设置下一个路由的 meta
         from.meta.keepAlive = true
       } else {
         // 设置下一个路由的 meta
         from.meta.keepAlive = false
       }
+      */
       next()
     },
     methods: {

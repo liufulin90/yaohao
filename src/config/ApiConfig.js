@@ -14,6 +14,13 @@ const apiUrlConfig = () => {
     apiRoot = `${apiHost}/api/v1`
   }
   return {
+    bannerList: `${apiRoot}/banner/list`, // 获取首页banner列表
+    /**
+     参数 是否必须 说明
+     pid 是 楼盘项目id
+     type 否 相册类型, house_type  楼盘户型; outdoor_scene  楼盘实景; surrounding  楼盘周边
+     */
+    projectPhotoList: `${apiRoot}/project/photo/list`, // 获取首页banner列表
     /**
      参数 是否必须 说明
      page 否 页码，默认1

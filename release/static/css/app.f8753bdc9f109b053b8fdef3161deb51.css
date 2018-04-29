@@ -422,4 +422,26 @@ body {
   .personal-info-wrap .weui-cell:first-child::before {
     display: block; }
 
-/*# sourceMappingURL=app.51bc442b327200c2676e2c8906bfad4e.css.map*/
+img {
+  max-width: 100%; }
+
+#photo-list-wrap .weui-panel:after {
+  border-bottom: none; }
+
+#photo-list-wrap .weui-media-box_text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center; }
+  #photo-list-wrap .weui-media-box_text .views > div.my-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center; }
+  #photo-list-wrap .weui-media-box_text .views figure {
+    width: 31.3%;
+    margin: 0 1% 10px; }
+  #photo-list-wrap .weui-media-box_text .views img {
+    max-width: 100%; }
+
+/*# sourceMappingURL=app.f8753bdc9f109b053b8fdef3161deb51.css.map*/

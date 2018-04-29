@@ -5,9 +5,9 @@
         <div class="banner" style="height:150px">
           <swiper :options="swiperOption" style="height:150px">
             <swiper-slide v-for="slide in swiperSlides">
-              <a :href="slide.link">
-                <img :src="slide.img">
-                <div class="slide-tips">{{slide.text}}</div>
+              <a :href="slide.url && slide.url.split('?pid=')[1] ? '/#/projects?pid=' + slide.url.split('?pid=')[1] : slide.url">
+                <img :src="slide.image">
+                <div class="slide-tips">{{slide.title}}</div>
               </a>
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
@@ -134,7 +134,7 @@
   import * as CODE from '../config/code'
   import {PATH_PAGE_MAPPING, PAGE_SIZE} from '../config/'
   import {CHANGE_PENDING, CHANGE_TOAST} from 'store/globalStore'
-  import {PROJECT_LIST} from 'store/modules/projectStore'
+  import {PROJECT_LIST, BANNER_LIST} from 'store/modules/projectStore'
   import * as $ from 'jquery'
   var scrollFun
   export default {
@@ -163,19 +163,19 @@
         },
         swiperSlides: [
           {
-            link: '#/index',
-            img: 'http://imgcdn.qi.la/assets/img/20180318/5aad3ea39d830.jpg?imageView2/5/w/600/format/jpg/interlace/1/q/50|imageslim',
-            text: '恒大御龙天峰城二期'
+            url: '#/index',
+            image: 'http://imgcdn.qi.la/assets/img/20180318/5aad3ea39d830.jpg?imageView2/5/w/600/format/jpg/interlace/1/q/50|imageslim',
+            title: '恒大御龙天峰城二期'
           },
           {
-            link: '#/index',
-            img: 'http://imgcdn.qi.la/assets/img/20180318/5aad3f686147f.jpg?imageView2/5/w/600/format/jpg/interlace/1/q/50|imageslim',
-            text: '保利学府城'
+            url: '#/index',
+            image: 'http://imgcdn.qi.la/assets/img/20180318/5aad3f686147f.jpg?imageView2/5/w/600/format/jpg/interlace/1/q/50|imageslim',
+            title: '保利学府城'
           },
           {
-            link: '#/index',
-            img: '/static/resource.jpg',
-            text: '保利国宾首府'
+            url: '#/index',
+            image: '/static/resource.jpg',
+            title: '保利国宾首府'
           }]
       }
     },
@@ -200,6 +200,7 @@
 //          produce_no_time: '2018-04-22'
 //        }
       ]
+      this.getBannerList()
       this.searchList()
       const {name} = this.$route
       if (PATH_PAGE_MAPPING[name]) {
@@ -221,8 +222,15 @@
     beforeDestroy () {
       $(window).unbind('scroll', scrollFun)
     },
+    beforeRouteLeave (to, from, next) {
+      if (to.name === 'projects') {
+        // 设置下一个路由的 meta
+        to.meta.keepAlive = false
+      }
+      next()
+    },
     methods: {
-      ...mapActions([CHANGE_PENDING, CHANGE_TOAST, PROJECT_LIST]),
+      ...mapActions([CHANGE_PENDING, CHANGE_TOAST, PROJECT_LIST, BANNER_LIST]),
       showLoading () {
         let {pending} = this.$store.state._global
         if (pending) return
@@ -237,6 +245,20 @@
       },
       cancleSearch () {
         this.isSearch = false
+      },
+      getBannerList () {
+        this.CHANGE_PENDING(true)
+        this.BANNER_LIST().then(res => {
+          this.CHANGE_PENDING(false)
+          if (CODE.SUCCESS == res.status) {
+            this.swiperSlides = res.info
+          } else {
+            this.CHANGE_TOAST(res.msg)
+          }
+        }).catch(() => {
+          this.CHANGE_PENDING(false)
+          this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+        })
       },
       searchList (isAppend) {
         this.hasMore = false

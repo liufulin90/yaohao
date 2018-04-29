@@ -6,6 +6,15 @@ import {apiUrlConfig} from '../config/ApiConfig'
 
 class ProjectService {
   /**
+   * banner列表
+   * @param data
+   * @returns {Promise.<TResult>|*}
+   */
+  bannerList (data) {
+    let url = apiUrlConfig().bannerList
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  /**
    * 楼盘列表
    * @param data
    * @returns {Promise.<TResult>|*}
@@ -21,6 +30,15 @@ class ProjectService {
    */
   projectInfo (data) {
     let url = apiUrlConfig().projectInfo
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  /**
+   * 楼盘相册
+   * @param data
+   * @returns {Promise.<TResult>|*}
+   */
+  projectPhotoList (data) {
+    let url = apiUrlConfig().projectPhotoList
     return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
   }
   /**
