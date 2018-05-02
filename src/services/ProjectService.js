@@ -59,6 +59,24 @@ class ProjectService {
     let url = apiUrlConfig().resultList
     return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
   }
+  /**
+   * 查询楼盘销售顾问
+   * @param data
+   * @returns {Promise.<TResult>|*}
+   */
+  salemanList (data) {
+    let url = apiUrlConfig().salemanList
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  /**
+   * 查询我的摇号信息
+   * @param data
+   * @returns {Promise.<TResult>|*}
+   */
+  projectUserResultList (data) {
+    let url = apiUrlConfig().projectUserResultList
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
 }
 
 // 实例化后再导出

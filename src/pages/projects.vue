@@ -51,7 +51,7 @@
         <router-link :to="{ name: 'projectPhotoList', query: {pid: pid }}" class="weui-form-preview__btn weui-form-preview__btn_primary">
           户型图
         </router-link>
-        <router-link v-show="false" :to="{ name: 'contactAdvisor', query: {pid: pid }}" class="weui-form-preview__btn weui-form-preview__btn_primary">
+        <router-link :to="{ name: 'contactAdvisor', query: {pid: pid }}" class="weui-form-preview__btn weui-form-preview__btn_primary">
           联系置业顾问
         </router-link>
       </div>
@@ -73,7 +73,6 @@
   import {CHANGE_PENDING, CHANGE_TOAST} from 'store/globalStore'
   import * as MSG from '../config/messages'
   import * as CODE from '../config/code'
-//  import {PROJECT_SALE_INFO_KEY} from '../config/code'
 
   export default {
     data () {

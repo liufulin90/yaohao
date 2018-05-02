@@ -8,7 +8,7 @@
         </div>
         <p class="weui-tabbar__label">首页</p>
       </router-link>
-      <router-link :to="{name: 'myShake'}" @click="tapNav" class="weui-tabbar__item" v-show="false">
+      <router-link :to="{name: 'myShake'}" @click="tapNav" class="weui-tabbar__item">
         <div :class="'weui-tabbar__icon nav-icon ' + (page==2?'my-shake-active':'my-shake-normal')">
           <div></div>
         </div>
@@ -20,7 +20,7 @@
         </div>
         <p class="weui-tabbar__label">资讯</p>
       </router-link>
-      <router-link :to="{name: 'personal'}" @click="tapNav" class="weui-tabbar__item" v-show="false">
+      <router-link :to="{name: 'personal'}" @click="tapNav" class="weui-tabbar__item">
         <div :class="'weui-tabbar__icon nav-icon ' + (page==4?'nav-my-active':'nav-my-normal')">
           <div></div>
         </div>

@@ -9,7 +9,8 @@ export const PROJECT_INFO = 'PROJECT_INFO' // 楼盘详情
 export const APPLY_LIST = 'APPLY_LIST' // 复核名单
 export const RESULT_LIST = 'RESULT_LIST' // 摇号结果
 export const PROJECT_PHOTO_LIST = 'PROJECT_PHOTO_LIST' // 楼盘相册
-
+export const SALEMAN_LIST = 'SALEMAN_LIST' // 查询楼盘销售顾问
+export const PROJECT_USER_RESULT_LIST = 'PROJECT_USER_RESULT_LIST' // 查询我的摇号信息
 export default {
   state: {},
   mutations: {
@@ -26,16 +27,32 @@ export default {
       Object.assign(state, payload)
     },
     [APPLY_LIST] (state, payload) {
-      Object.assign(state, payload)
+      Object.assign(state, {
+        APPLY_LIST: payload
+      })
     },
     [RESULT_LIST] (state, payload) {
       Object.assign(state, payload)
     },
     [BANNER_LIST] (state, payload) {
-      Object.assign(state, payload)
+      Object.assign(state, {
+        BANNER_LIST: payload
+      })
     },
     [PROJECT_PHOTO_LIST] (state, payload) {
-      Object.assign(state, payload)
+      Object.assign(state, {
+        PROJECT_PHOTO_LIST: payload
+      })
+    },
+    [SALEMAN_LIST] (state, payload) {
+      Object.assign(state, {
+        SALEMAN_LIST: payload
+      })
+    },
+    [PROJECT_USER_RESULT_LIST] (state, payload) {
+      Object.assign(state, {
+        PROJECT_USER_RESULT_LIST: payload
+      })
     }
   },
   actions: {
@@ -77,6 +94,18 @@ export default {
     [PROJECT_PHOTO_LIST] ({commit}, payload) {
       return ProjectService.projectPhotoList(payload).then((res) => {
         commit(PROJECT_PHOTO_LIST, payload)
+        return res
+      })
+    },
+    [SALEMAN_LIST] ({commit}, payload) {
+      return ProjectService.salemanList(payload).then((res) => {
+        commit(SALEMAN_LIST, payload)
+        return res
+      })
+    },
+    [PROJECT_USER_RESULT_LIST] ({commit}, payload) {
+      return ProjectService.projectUserResultList(payload).then((res) => {
+        commit(PROJECT_USER_RESULT_LIST, payload)
         return res
       })
     }

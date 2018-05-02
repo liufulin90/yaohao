@@ -15,7 +15,31 @@ class UserService {
     let url = apiUrlConfig().login
     return Ajax({url: url, data: user}).then(response => response)
   }
-
+  /**
+   * 获取当前登录用户资料
+   * @param data
+   * @returns {Promise.<TResult>|*}
+   */
+  userInfo (data) {
+    let url = apiUrlConfig().userInfo
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  userIdinfoAdd (data) {
+    let url = apiUrlConfig().userIdinfoAdd
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  userIdinfoDelete (data) {
+    let url = apiUrlConfig().userIdinfoDelete
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  userIdinfoList (data) {
+    let url = apiUrlConfig().userIdinfoList
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  userIdinfoUpdate (data) {
+    let url = apiUrlConfig().userIdinfoUpdate
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
   /**
    * 退出
    * @returns {*|Promise.<TResult>}

@@ -14,7 +14,10 @@ const apiUrlConfig = () => {
     apiRoot = `${apiHost}/api/v1`
   }
   return {
-    bannerList: `${apiRoot}/banner/list`, // 获取首页banner列表
+    /**
+     * 获取首页banner列表
+     */
+    bannerList: `${apiRoot}/banner/list`,
     /**
      参数 是否必须 说明
      pid 是 楼盘项目id
@@ -61,6 +64,47 @@ const apiUrlConfig = () => {
      id  是  资讯动态ID
      */
     infoDetail: `${apiRoot}/article/get`, // 获取资讯动态详情
+    /**
+     参数 是否必须 说明
+     pid 是 楼盘项目id
+     */
+    salemanList: `${apiRoot}/project/saleman/list`, // 查询楼盘销售顾问
+    /**
+     参数 是否必须 说明
+     pid 否 楼盘项目id，不传时将返回所有和我所有身份信息相关的摇号信息
+     */
+    projectUserResultList: `${apiRoot}/project/user/result/list`, // 查询我的摇号信息
+
+    userInfo: `${apiRoot}/user/info`, // 获取当前登录用户资料
+    /**
+     参数 是否必须 说明
+     name 是 姓名
+     phone 是 手机号码
+     id_no 是 身份证号码
+     */
+    userIdinfoAdd: `${apiRoot}/user/idinfo/add`, // 增加用户身份信息
+    userIdinfoList: `${apiRoot}/user/idinfo/list`, // 查询用户身份信息
+    /**
+     参数 是否必须 说明
+     id 是 身份信息id
+     */
+    userIdinfoDelete: `${apiRoot}/user/idinfo/delete`, // 删除用户身份信息
+    /**
+     参数 是否必须 说明
+     id 是 身份信息ID
+     name 是 姓名
+     phone 是 手机号码
+     id_no 是 身份证号码
+     */
+    userIdinfoUpdate: `${apiRoot}/user/idinfo/update`, // 修改用户身份信息
+    /**
+     参数 是否必须 说明
+     type 是 反馈分类，填写具体的分类中文即可
+     contact 是 联系方式，手机、邮箱等
+     content 是 反馈内容
+     */
+    feedbackAdd: `${apiRoot}/feedback/add`, // 添加意见反馈
+
     login: `${apiRoot}/user/login`, // 登录
     logout: `${apiRoot}/user/logout` // 退出
   }
