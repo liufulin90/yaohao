@@ -11,6 +11,11 @@ export const RESULT_LIST = 'RESULT_LIST' // 摇号结果
 export const PROJECT_PHOTO_LIST = 'PROJECT_PHOTO_LIST' // 楼盘相册
 export const SALEMAN_LIST = 'SALEMAN_LIST' // 查询楼盘销售顾问
 export const PROJECT_USER_RESULT_LIST = 'PROJECT_USER_RESULT_LIST' // 查询我的摇号信息
+
+export const PROJECT_IDINFO_BIND = 'PROJECT_IDINFO_BIND' // 绑定用户身份信息到楼盘
+export const PROJECT_IDINFO_DELETE = 'PROJECT_IDINFO_DELETE' // 删除已绑定到楼盘的身份信息
+export const PROJECT_IDINFO_LIST = 'PROJECT_IDINFO_LIST' // 查询已绑定到楼盘的身份信息
+
 export default {
   state: {},
   mutations: {
@@ -52,6 +57,17 @@ export default {
     [PROJECT_USER_RESULT_LIST] (state, payload) {
       Object.assign(state, {
         PROJECT_USER_RESULT_LIST: payload
+      })
+    },
+    [PROJECT_IDINFO_BIND] (state, payload) {
+
+    },
+    [PROJECT_IDINFO_DELETE] (state, payload) {
+
+    },
+    [PROJECT_IDINFO_LIST] (state, payload) {
+      Object.assign(state, {
+        PROJECT_IDINFO_LIST: payload
       })
     }
   },
@@ -106,6 +122,24 @@ export default {
     [PROJECT_USER_RESULT_LIST] ({commit}, payload) {
       return ProjectService.projectUserResultList(payload).then((res) => {
         commit(PROJECT_USER_RESULT_LIST, payload)
+        return res
+      })
+    },
+    [PROJECT_IDINFO_BIND] ({commit}, payload) {
+      return ProjectService.projectIdinfoBind(payload).then((res) => {
+        commit(PROJECT_IDINFO_BIND, payload)
+        return res
+      })
+    },
+    [PROJECT_IDINFO_DELETE] ({commit}, payload) {
+      return ProjectService.projectIdinfoDelete(payload).then((res) => {
+        commit(PROJECT_IDINFO_DELETE, payload)
+        return res
+      })
+    },
+    [PROJECT_IDINFO_LIST] ({commit}, payload) {
+      return ProjectService.projectIdinfoList(payload).then((res) => {
+        commit(PROJECT_IDINFO_LIST, payload)
         return res
       })
     }

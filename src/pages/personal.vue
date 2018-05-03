@@ -3,7 +3,7 @@
   <div class="body-wrapper personal-wrap">
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel__bd">
-        <div href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box weui-media-box_appmsg">
           <div class="weui-media-box__hd">
             <img class="weui-media-box__thumb" :src="personalInfo.avatar ? personalInfo.avatar : '/static/resource.jpg'" style="border-radius: 50%;width: 60px;height: 60px;">
           </div>
@@ -24,18 +24,18 @@
     </div>
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel__ft">
-        <a href="javascript:void(0);" class="weui-cell weui-cell_access">
+        <router-link :to="{name: 'feedback'}" class="weui-cell weui-cell_access">
           <div class="weui-cell__bd">反馈</div>
           <span class="weui-cell__ft"></span>
-        </a>
+        </router-link>
       </div>
     </div>
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel__ft">
-        <a href="javascript:void(0);" class="weui-cell weui-cell_access">
+        <router-link :to="{name: 'about'}" class="weui-cell weui-cell_access">
           <div class="weui-cell__bd">关于</div>
           <span class="weui-cell__ft"></span>
-        </a>
+        </router-link>
       </div>
     </div>
     <v-footer :page="navPage"></v-footer>
@@ -63,7 +63,7 @@
       this.CHANGE_PENDING(true)
       this.USER_INFO().then(res => {
         this.CHANGE_PENDING(false)
-        if (CODE.SUCCESS == res.status) {
+        if (CODE.SUCCESS == res.status && !res.errno) {
           this.personalInfo = res.info
         } else {
           this.CHANGE_TOAST(res.msg)

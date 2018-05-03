@@ -40,6 +40,10 @@ class UserService {
     let url = apiUrlConfig().userIdinfoUpdate
     return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
   }
+  feedbackAdd (data) {
+    let url = apiUrlConfig().feedbackAdd
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
   /**
    * 退出
    * @returns {*|Promise.<TResult>}

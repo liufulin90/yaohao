@@ -44,7 +44,7 @@
         this.CHANGE_PENDING(true)
         this.PROJECT_INFO({pid: pid}).then(res => {
           this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
+          if (CODE.SUCCESS == res.status && !res.errno) {
             this.projects = res.info
           } else {
             this.CHANGE_TOAST(res.msg)

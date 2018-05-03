@@ -35,7 +35,20 @@ body {
   padding: 1px 2px;
   font-size: 12px;
 }
-
+.base-color {
+  color: $BASE_ACTIVE_COLOR;
+}
+// 重写
+.weui-btn_primary{
+  background-color: $BASE_ACTIVE_COLOR;
+}
+.weui-btn_primary:not(.weui-btn_disabled):active{
+  background-color: $BASE_TAP_COLOR;
+}
+.weui-switch:checked, .weui-switch-cp__input:checked ~ .weui-switch-cp__box{
+    border-color: $BASE_ACTIVE_COLOR;
+    background-color: $BASE_ACTIVE_COLOR;
+}
 /* 底部 */
 .footer {
   position: fixed;
@@ -297,7 +310,7 @@ body {
 }
 .personal-info-wrap{
   min-height: 100vh;
-  background: #f9f9f9;
+  background: $BASE_BG_CORLOR;
   .infotop{
     font-size: 14px;
     span{
@@ -317,34 +330,7 @@ body {
     font-weight: normal;
     width: 75px;
   }
-  .infobutton{
-    width: 100%;
-    padding-top: 20px;
-    display: flex;
-    a{
-      width: 30%;
-      font-size: 14px;
-      &.weui-btn_primary{
-        background-color: $BASE_ACTIVE_COLOR;
-      }
-      &.weui-btn_primary:not(.weui-btn_disabled):active{
-        background-color: $BASE_TAP_COLOR;
-      }
-      &.weui-btn_default{
 
-      }
-      &.weui-btn {
-        margin-top: 0;
-      }
-      &:focus, &:hover{
-        color: white;
-      }
-      &:first-child:focus, &:first-child:hover{
-        color: $BASE_FONT_COLOR;
-      }
-    }
-
-  }
   .weui-cell .weui-label{
     margin: 2px 0;
   }
@@ -352,7 +338,35 @@ body {
     display: block;
   }
 }
+.project-wrap .infobutton,
+.personal-info-wrap .infobutton{
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  a{
+    width: 30%;
+    font-size: 14px;
+    &.weui-btn_primary{
+      background-color: $BASE_ACTIVE_COLOR;
+    }
+    &.weui-btn_primary:not(.weui-btn_disabled):active{
+      background-color: $BASE_TAP_COLOR;
+    }
+    &.weui-btn_default{
 
+    }
+    &.weui-btn {
+      margin-top: 0;
+    }
+    &:focus, &:hover{
+      color: white;
+    }
+    &:first-child:focus, &:first-child:hover{
+      color: $BASE_FONT_COLOR;
+    }
+  }
+
+}
 // 楼盘相册
 
 img{
@@ -383,6 +397,33 @@ img{
       img{
         max-width: 100%;
       }
+    }
+  }
+}
+
+// 我的摇号
+
+.my-shake{
+  min-height: 100vh;
+  .left-label{
+    font-weight: normal;
+    text-align: right;
+    width: 122px;
+    padding-right: 15px;
+  }
+  .table{
+    margin-bottom: 0px;
+  }
+  .table tr td{
+    border: none;
+  }
+  .my-shake-bindlist {
+    .left-label {
+      width: 110px;
+      padding-right: 10px;
+    }
+    .myshake-project-link {
+      color: $BASE_ACTIVE_COLOR;
     }
   }
 }

@@ -250,7 +250,7 @@
         this.CHANGE_PENDING(true)
         this.BANNER_LIST().then(res => {
           this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
+          if (CODE.SUCCESS == res.status && !res.errno) {
             this.swiperSlides = res.info
           } else {
             this.CHANGE_TOAST(res.msg)
@@ -274,7 +274,7 @@
           page: this.page
         }).then(res => {
           this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
+          if (CODE.SUCCESS == res.status && !res.errno) {
             if (isAppend === true) {
               this.list = this.list.concat(res.info)
             } else {

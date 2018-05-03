@@ -77,6 +77,19 @@ class ProjectService {
     let url = apiUrlConfig().projectUserResultList
     return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
   }
+  projectIdinfoList (data) {
+    let url = apiUrlConfig().projectIdinfoList
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  projectIdinfoDelete (data) {
+    let url = apiUrlConfig().projectIdinfoDelete
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+  projectIdinfoBind (data) {
+    let url = apiUrlConfig().projectIdinfoBind
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
+
 }
 
 // 实例化后再导出

@@ -153,7 +153,7 @@
           kw: this.keyword
         }).then(res => {
           this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
+          if (CODE.SUCCESS == res.status && !res.errno) {
             if (isAppend === true) {
               this.list = this.list.concat(res.info)
             } else {

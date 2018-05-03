@@ -1,6 +1,6 @@
 <!-- 楼盘基本信息 -->
 <template>
-  <div class="body-wrapper project-wrap">
+  <div class="body-wrapper project-wrap global-bg">
     <div class="project-pic">
       <img :src="projects.image?projects.image:'/static/resource.jpg'">
     </div>
@@ -64,13 +64,51 @@
         </router-link>
       </div>
     </div>
+    <!-- 绑定身份信息 -->
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__ft infotop">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">绑定的身份信息</div>
+          <span class="weui-cell__ft" @click="showBindForm">绑定</span>
+        </div>
+      </div>
+      <div class="weui-cell" v-if="bindList.length">
+        <div class="weui-cell__bd">
+          <span v-for="item in bindList" style="padding-right: 15px">{{item.name}}</span>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 10px 15px;color: #808080;">
+      <p v-if="!bindList.length"> 您还没有绑定，点击右上角去绑定吧。</p>
+      <p>绑定了在摇号结果出来后会第一时间接受到短信通知。</p>
+    </div>
     <br> <br>
+    <!-- 绑定弹出框 -->
+    <div class="js_dialog" v-show="bindFormIsShow" style="opacity: 1;">
+      <div class="weui-mask"></div>
+      <div class="weui-dialog" style="max-width: none;">
+        <h4 style="padding: 10px 30px 0;margin-bottom: 0" class="t-l">选择身份信息绑定到该楼盘</h4>
+        <div class="weui-cells weui-cells_form" style="font-size: 14px;padding: 0 15px 15px;">
+          <div class="weui-cell weui-cell_switch" v-for="item in userInfoList">
+            <div class="weui-cell__bd"><label for="" class="weui-label t-l">{{item.name}}</label></div>
+            <div class="weui-cell__ft">
+              <input class="weui-switch" type="checkbox" @change="changeBind" v-model="selected" :data-name="item.name" :value="item.id">
+            </div>
+          </div>
+          <div class="weui-cell infobutton">
+            <a href="javascript:;" class="weui-btn weui-btn_primary" @click="getNewBindList">确定</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
   import {mapActions} from 'vuex'
-  import {PROJECT_INFO} from '../store/modules/projectStore'
   import {CHANGE_PENDING, CHANGE_TOAST} from 'store/globalStore'
+  import {PROJECT_INFO, PROJECT_IDINFO_LIST, PROJECT_IDINFO_BIND, PROJECT_IDINFO_DELETE} from '../store/modules/projectStore'
+  import {USER_IDINFO_LIST} from '../store/modules/userStore'
+  import * as jst from 'js-common-tools'
   import * as MSG from '../config/messages'
   import * as CODE from '../config/code'
 
@@ -78,6 +116,10 @@
     data () {
       return {
         isSearch: false,
+        bindFormIsShow: false,
+        userInfoList: [],
+        selected: [],
+        bindList: [], // 已绑定的信息
         type: 1,
         pid: '',
         projects: {
@@ -88,30 +130,8 @@
     mounted () {
       var pid = this.$route.query.pid
       this.pid = pid
-      if (pid) {
-        this.CHANGE_PENDING(true)
-        this.PROJECT_INFO({pid: pid}).then(res => {
-          this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
-            var tempProject = {}
-            Object.assign(this.projects, res.info)
-            for (var item in res.info.attributes) {
-              var data = res.info.attributes[item]
-              for (var is in data) {
-                tempProject = Object.assign(tempProject, {
-                  [data[is].key]: data[is].value
-                })
-              }
-            }
-            Object.assign(this.projects, tempProject)
-          } else {
-            this.CHANGE_TOAST(res.msg)
-          }
-        }).catch(() => {
-          this.CHANGE_PENDING(false)
-          this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
-        })
-      }
+      this.getProjectInfo(pid)
+      this.getBindList()
     },
     beforeRouteLeave (to, from, next) {
       /*
@@ -126,7 +146,8 @@
       next()
     },
     methods: {
-      ...mapActions([CHANGE_PENDING, CHANGE_TOAST, PROJECT_INFO]),
+      ...mapActions([CHANGE_PENDING, CHANGE_TOAST, PROJECT_INFO,
+        PROJECT_IDINFO_LIST, PROJECT_IDINFO_BIND, PROJECT_IDINFO_DELETE, USER_IDINFO_LIST]),
       tapSearch () {
         this.isSearch = true
       },
@@ -135,6 +156,107 @@
       },
       changeType (e) {
         this.type = e.target.dataset.type
+      },
+      getProjectInfo (pid) {
+        if (pid) {
+          this.CHANGE_PENDING(true)
+          this.PROJECT_INFO({pid: pid}).then(res => {
+            this.CHANGE_PENDING(false)
+            if (CODE.SUCCESS == res.status && !res.errno) {
+              var tempProject = {}
+              Object.assign(this.projects, res.info)
+              for (var item in res.info.attributes) {
+                var data = res.info.attributes[item]
+                for (var is in data) {
+                  tempProject = Object.assign(tempProject, {
+                    [data[is].key]: data[is].value
+                  })
+                }
+              }
+              Object.assign(this.projects, tempProject)
+            } else {
+              this.CHANGE_TOAST(res.msg)
+            }
+          }).catch(() => {
+            this.CHANGE_PENDING(false)
+            this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+          })
+        }
+      },
+      showBindForm () {
+        this.CHANGE_PENDING(true)
+        this.USER_IDINFO_LIST().then(res => {
+          this.CHANGE_PENDING(false)
+          if (CODE.SUCCESS == res.status && !res.errno) {
+            this.userInfoList = res.info
+            this.bindFormIsShow = true
+          } else {
+            this.CHANGE_TOAST(res.msg)
+          }
+        }).catch(() => {
+          this.CHANGE_PENDING(false)
+          this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+        })
+      },
+      changeBind (e) {
+        if (jst.inArray(e.target.value, this.selected)) {
+          // 绑定
+          this.PROJECT_IDINFO_BIND({
+            pid: this.pid,
+            ids: e.target.value
+          }).then(res => {
+            this.CHANGE_PENDING(false)
+            if (CODE.SUCCESS == res.status && !res.errno) {
+              this.CHANGE_TOAST('绑定成功')
+            } else {
+              this.CHANGE_TOAST(res.msg)
+            }
+          }).catch(() => {
+            this.CHANGE_PENDING(false)
+            this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+          })
+        } else {
+          // 解除
+          this.PROJECT_IDINFO_DELETE({
+            pid: this.pid,
+            ids: e.target.value
+          }).then(res => {
+            this.CHANGE_PENDING(false)
+            if (CODE.SUCCESS == res.status && !res.errno) {
+              this.CHANGE_TOAST('解除绑定')
+            } else {
+              this.CHANGE_TOAST(res.msg)
+            }
+          }).catch(() => {
+            this.CHANGE_PENDING(false)
+            this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+          })
+        }
+      },
+      getBindList () {
+        this.CHANGE_PENDING(true)
+        this.PROJECT_IDINFO_LIST({pid: this.pid}).then(res => {
+          this.CHANGE_PENDING(false)
+          if (CODE.SUCCESS == res.status && !res.errno) {
+            this.bindList = res.info
+            var temp = []
+            this.bindList.forEach((it) => {
+              temp.push(it.id)
+            })
+            this.selected = temp
+          } else {
+            this.CHANGE_TOAST(res.msg)
+          }
+        }).catch(() => {
+          this.CHANGE_PENDING(false)
+          this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+        })
+      },
+      // 点击绑定弹出看确定按钮
+      getNewBindList () {
+        this.CHANGE_TOAST(false)
+        this.getBindList()
+        this.bindFormIsShow = false
       }
     }
   }

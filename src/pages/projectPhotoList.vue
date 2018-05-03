@@ -46,7 +46,7 @@
         this.CHANGE_PENDING(true)
         this.PROJECT_PHOTO_LIST({pid: this.pid}).then(res => {
           this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
+          if (CODE.SUCCESS == res.status && !res.errno) {
             this.hasInfo = false
             var data = res.info
             for (var its in data) {

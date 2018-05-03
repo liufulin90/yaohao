@@ -62,7 +62,7 @@
         this.CHANGE_PENDING(true)
         this.SALEMAN_LIST({pid: pid}).then(res => {
           this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
+          if (CODE.SUCCESS == res.status && !res.errno) {
             this.hasInfo = res.info.length > 0
             this.list = res.info
           } else {

@@ -12,6 +12,8 @@ export const USER_IDINFO_ADD = 'USER_IDINFO_ADD' // 增加用户身份信息
 export const USER_IDINFO_LIST = 'USER_IDINFO_LIST' // 查询用户身份信息
 export const USER_IDINFO_DELETE = 'USER_IDINFO_DELETE' // 删除用户身份信息
 export const USER_IDINFO_UPDATE = 'USER_IDINFO_UPDATE' // 获取当前登录用户资料
+export const FEED_BACK_ADD = 'FEED_BACK_ADD' // 用户信息反馈
+
 export default {
   state: {},
   mutations: {
@@ -46,6 +48,11 @@ export default {
     },
     [USER_IDINFO_UPDATE] (state, payload) {
       Object.assign(state, {payload})
+    },
+    [FEED_BACK_ADD] (state, payload) {
+      Object.assign(state, {
+        FEED_BACK_ADD: payload
+      })
     },
     /**
      * 退出的 mutation
@@ -96,6 +103,12 @@ export default {
     [USER_IDINFO_UPDATE] ({commit}, payload) {
       return UserService.userIdinfoUpdate(payload).then((res) => {
         commit(USER_IDINFO_UPDATE, payload)
+        return res
+      })
+    },
+    [FEED_BACK_ADD] ({commit}, payload) {
+      return UserService.feedbackAdd(payload).then((res) => {
+        commit(FEED_BACK_ADD, payload)
         return res
       })
     },

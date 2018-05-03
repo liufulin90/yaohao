@@ -116,7 +116,8 @@ export default [
     name: 'personal',
     meta: {
       auth: false,
-      title: '个人中心'
+      title: '个人中心',
+      keepAlive: true
     },
     component: resolve => require(['../pages/personal'], resolve)
   },
@@ -128,6 +129,24 @@ export default [
       title: '个人信息'
     },
     component: resolve => require(['../pages/personalInfo'], resolve)
+  },
+  {
+    path: '/feedback', // 个人中心-意见反馈
+    name: 'feedback',
+    meta: {
+      auth: false,
+      title: '意见反馈'
+    },
+    component: resolve => require(['../pages/feedback'], resolve)
+  },
+  {
+    path: '/about', // 个人中心-关于
+    name: 'about',
+    meta: {
+      auth: false,
+      title: '关于'
+    },
+    component: resolve => require(['../pages/about'], resolve)
   },
   {
     path: '/',

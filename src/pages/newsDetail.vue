@@ -37,7 +37,7 @@
         this.CHANGE_PENDING(true)
         this.INFO_DETAIL({id: this.id}).then(res => {
           this.CHANGE_PENDING(false)
-          if (CODE.SUCCESS == res.status) {
+          if (CODE.SUCCESS == res.status && !res.errno) {
             this.detail = res.info
             document.title = res.info.title
           } else {

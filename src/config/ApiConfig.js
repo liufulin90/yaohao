@@ -70,6 +70,23 @@ const apiUrlConfig = () => {
      */
     salemanList: `${apiRoot}/project/saleman/list`, // 查询楼盘销售顾问
     /**
+     * 参数 是否必须说 明
+     * pid 是 要绑定的楼盘项目id
+     * ids 是 用户身份信息id，多个id用英文逗号隔开
+     */
+    projectIdinfoBind: `${apiRoot}/project/idinfo/bind`, // 绑定用户身份信息到楼盘
+    /**
+     * 参数 是否必须说 明
+     * pid 是 要绑定的楼盘项目id
+     * ids 是 用户身份信息id，多个id用英文逗号隔开
+     */
+    projectIdinfoDelete: `${apiRoot}/project/idinfo/delete`, // 删除已绑定到楼盘的身份信息
+    /**
+     * 参数 是否必须说 明
+     * pid 是 要绑定的楼盘项目id，不传时将返回所有楼盘的绑定信息
+     */
+    projectIdinfoList: `${apiRoot}/project/idinfo/list`, // 查询已绑定到楼盘的身份信息
+    /**
      参数 是否必须 说明
      pid 否 楼盘项目id，不传时将返回所有和我所有身份信息相关的摇号信息
      */

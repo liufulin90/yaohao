@@ -14,6 +14,7 @@
            :data-phone="item.phone"
            :data-id_no="item.id_no"
            :data-index="index"
+           :data-id="item.id"
            @touchstart="showDeleteButton" @touchend="clearLoop"
         >
           <div class="weui-cell__bd infoname">{{item.name}}</div>
@@ -21,14 +22,14 @@
         </a>
       </div>
     </div>
-    <div v-if="userInfoList.length" class="t-c pading-t10 weui-cell__ft">长按删除身份信息</div>
+    <div class="t-c pading-t10 weui-cell__ft">{{userInfoList.length>0 ? '长按删除身份信息' : '点击有上角添加信息'}}</div>
     <!-- 弹出框编辑 -->
     <div class="js_dialog" v-show="deleteFormIsShow" style="opacity: 1;">
       <div class="weui-mask"></div>
       <div class="weui-dialog" style="max-width: none;">
-        <h4 style="padding: 15px 30px 0;" class="t-l">确认删除（{{form.name}}）？</h4>
-        <div class="weui-cells weui-cells_form" style="font-size: 14px;padding: 0 0 15px;" v-model="form">
-          <div class="weui-cell infobutton">
+        <h4 style="padding: 10px 30px 0;" class="t-l">确认删除（{{form.name}}）？</h4>
+        <div class=" weui-cells_form" style="font-size: 14px;padding: 0 0 15px;" v-model="form">
+          <div class="infobutton">
             <a href="javascript:;" class="weui-btn weui-btn_default" @click="deleteFormIsShow = false">取消</a>
             <a href="javascript:;" class="weui-btn weui-btn_primary" @click="deleteInfo">确定</a>
           </div>
@@ -75,7 +76,7 @@
   import {CHANGE_PENDING, CHANGE_TOAST} from 'store/globalStore'
   import {USER_IDINFO_ADD, USER_IDINFO_LIST, USER_IDINFO_DELETE, USER_IDINFO_UPDATE} from '../store/modules/userStore'
   import * as CODE from '../config/code'
-  import {USER_INFO_KEY} from '../config/'
+//  import {USER_INFO_KEY} from '../config/'
   import * as MSG from '../config/messages'
   import * as jst from 'js-common-tools'
 
@@ -94,11 +95,11 @@
         },
         updateIndex: '',
         userInfoList: [
-          {
-            name: '李四',
-            phone: '15082943228',
-            id_no: '511321********4458'
-          }
+//          {
+//            name: '李四',
+//            phone: '15082943228',
+//            id_no: '511321********4458'
+//          }
         ]
       }
     },
@@ -119,23 +120,11 @@
       }
        */
       // 获取数据库
-      this.CHANGE_PENDING(true)
-      this.USER_IDINFO_LIST().then(res => {
-        this.CHANGE_PENDING(false)
-        if (CODE.SUCCESS == res.status) {
-          this.userInfoList = res.info
-        } else {
-          this.CHANGE_TOAST(res.msg)
-        }
-      }).catch(() => {
-        this.CHANGE_PENDING(false)
-        this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
-      })
+      this.getInfoList()
     },
     methods: {
       ...mapActions([CHANGE_PENDING, CHANGE_TOAST, USER_IDINFO_ADD, USER_IDINFO_LIST, USER_IDINFO_DELETE, USER_IDINFO_UPDATE]),
       showDeleteButton (e) {
-        console.log('start')
         clearInterval(this.Loop)// 再次清空定时器，防止重复注册定时器
         this.Loop = setTimeout(() => {
           this.isDelete = true
@@ -153,15 +142,17 @@
         clearInterval(this.Loop)
       },
       showForm () {
-        var storageInfo = JSON.parse(localStorage.getItem(USER_INFO_KEY))
-        if (storageInfo.length >= 2) {
+//        var storageInfo = JSON.parse(localStorage.getItem(USER_INFO_KEY))
+        var storageInfo = this.userInfoList
+        if (storageInfo.length >= 3) {
           this.CHANGE_TOAST(MSG.ADD_USERINFO_ERROR_MSG)
           return
         }
         this.form = {
           name: '',
           phone: '',
-          id_no: ''
+          id_no: '',
+          id: ''
         }
         this.updateIndex = ''
         this.formIsShow = true
@@ -170,9 +161,11 @@
         this.form = e.target.dataset
         this.updateIndex = e.target.dataset.index
         this.formIsShow = true
+        console.log(this.form)
       },
       addOrUpdate () {
-        // 变更个人信息
+        // 变更个人信息 - 操作本地数据
+        /*
         var storageInfo = JSON.parse(localStorage.getItem(USER_INFO_KEY))
         if (!jst.isIdentityCard(this.form.id_no)) {
           this.CHANGE_TOAST(MSG.IDENTITY_CARD_ERROR_MSG)
@@ -192,9 +185,79 @@
           this.userInfoList = storageInfo
         }
         this.formIsShow = false
+        */
+        // 操作数据库
+        if (!jst.isIdentityCard(this.form.id_no)) {
+          this.CHANGE_TOAST(MSG.IDENTITY_CARD_ERROR_MSG)
+          return
+        }
+        if (!jst.isPhone(this.form.phone)) {
+          this.CHANGE_TOAST(MSG.PHONE_NUMBER_ERROR_MSG)
+          return
+        }
+        if (this.form.id === '') {
+          // 新增
+          this.CHANGE_PENDING(true)
+          this.USER_IDINFO_ADD(this.form).then(res => {
+            this.CHANGE_PENDING(false)
+            if (CODE.SUCCESS == res.status && !res.errno) {
+              this.getInfoList()
+              this.CHANGE_TOAST('新增成功')
+              this.formIsShow = false
+            } else {
+              this.CHANGE_TOAST(res.msg)
+            }
+          }).catch(() => {
+            this.CHANGE_PENDING(false)
+            this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+          })
+        } else {
+          // 更新
+          this.CHANGE_PENDING(true)
+          this.USER_IDINFO_UPDATE(this.form).then(res => {
+            this.CHANGE_PENDING(false)
+            if (CODE.SUCCESS == res.status && !res.errno) {
+              this.getInfoList()
+              this.CHANGE_TOAST('更新成功')
+              this.formIsShow = false
+            } else {
+              this.CHANGE_TOAST(res.msg)
+            }
+          }).catch(() => {
+            this.CHANGE_PENDING(false)
+            this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+          })
+        }
       },
       deleteInfo () {
-        console.log('delete')
+        this.CHANGE_PENDING(true)
+        this.USER_IDINFO_DELETE(this.form).then(res => {
+          this.CHANGE_PENDING(false)
+          if (CODE.SUCCESS == res.status && !res.errno) {
+            this.deleteFormIsShow = false
+            this.getInfoList()
+            this.CHANGE_TOAST('删除成功')
+          } else {
+            this.CHANGE_TOAST(res.msg)
+          }
+        }).catch(() => {
+          this.CHANGE_PENDING(false)
+          this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+        })
+      },
+      getInfoList () {
+        this.CHANGE_PENDING(true)
+        this.USER_IDINFO_LIST().then(res => {
+          this.CHANGE_PENDING(false)
+          if (CODE.SUCCESS == res.status && !res.errno) {
+            this.userInfoList = res.info
+          } else {
+            this.CHANGE_TOAST(res.msg)
+          }
+        }).catch(() => {
+          this.CHANGE_PENDING(false)
+          this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+        })
       }
     }
   }

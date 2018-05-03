@@ -9,7 +9,7 @@ export const PROJECT_NOT_SELECT_ERROR_MSG = '请先选择楼盘!'
 export const PROJECT_NOT_SELECT_AND_KEYWORD_EMPTY_ERROR_MSG = '请选择楼盘或输入关键字!'
 export const COMMONE_ERROR_MSG = '啊哈，去看看是不是没联网呢!'
 
-export const ADD_USERINFO_ERROR_MSG = '一个账号最多绑定2个身份证'
+export const ADD_USERINFO_ERROR_MSG = '一个账号最多绑定3个身份证'
 
 export const PHONE_NUMBER_ERROR_MSG = '手机号格式不正确'
 
