@@ -169,7 +169,7 @@ img {
   border: none; }
 
 .global-bg {
-  background-color: #f0f0f0; }
+  background-color: #f9f9f9; }
 
 .t-c {
   text-align: center; }
@@ -221,6 +221,19 @@ body {
   border-radius: 5px;
   padding: 1px 2px;
   font-size: 12px; }
+
+.base-color {
+  color: #FF6600; }
+
+.weui-btn_primary {
+  background-color: #FF6600; }
+
+.weui-btn_primary:not(.weui-btn_disabled):active {
+  background-color: #ff5400; }
+
+.weui-switch:checked, .weui-switch-cp__input:checked ~ .weui-switch-cp__box {
+  border-color: #FF6600;
+  background-color: #FF6600; }
 
 /* 底部 */
 .footer {
@@ -400,27 +413,37 @@ body {
   .personal-info-wrap .weui-cells_form .weui-cell__hd .weui-label {
     font-weight: normal;
     width: 75px; }
-  .personal-info-wrap .infobutton {
-    width: 100%;
-    padding-top: 20px;
-    display: flex; }
-    .personal-info-wrap .infobutton a {
-      width: 30%;
-      font-size: 14px; }
-      .personal-info-wrap .infobutton a.weui-btn_primary {
-        background-color: #FF6600; }
-      .personal-info-wrap .infobutton a.weui-btn_primary:not(.weui-btn_disabled):active {
-        background-color: #ff5400; }
-      .personal-info-wrap .infobutton a.weui-btn {
-        margin-top: 0; }
-      .personal-info-wrap .infobutton a:focus, .personal-info-wrap .infobutton a:hover {
-        color: white; }
-      .personal-info-wrap .infobutton a:first-child:focus, .personal-info-wrap .infobutton a:first-child:hover {
-        color: #555555; }
   .personal-info-wrap .weui-cell .weui-label {
     margin: 2px 0; }
   .personal-info-wrap .weui-cell:first-child::before {
     display: block; }
+
+.project-wrap .infobutton,
+.personal-info-wrap .infobutton {
+  width: 100%;
+  padding-top: 20px;
+  display: flex; }
+  .project-wrap .infobutton a,
+  .personal-info-wrap .infobutton a {
+    width: 30%;
+    font-size: 14px; }
+    .project-wrap .infobutton a.weui-btn_primary,
+    .personal-info-wrap .infobutton a.weui-btn_primary {
+      background-color: #FF6600; }
+    .project-wrap .infobutton a.weui-btn_primary:not(.weui-btn_disabled):active,
+    .personal-info-wrap .infobutton a.weui-btn_primary:not(.weui-btn_disabled):active {
+      background-color: #ff5400; }
+    .project-wrap .infobutton a.weui-btn,
+    .personal-info-wrap .infobutton a.weui-btn {
+      margin-top: 0; }
+    .project-wrap .infobutton a:focus, .project-wrap .infobutton a:hover,
+    .personal-info-wrap .infobutton a:focus,
+    .personal-info-wrap .infobutton a:hover {
+      color: white; }
+    .project-wrap .infobutton a:first-child:focus, .project-wrap .infobutton a:first-child:hover,
+    .personal-info-wrap .infobutton a:first-child:focus,
+    .personal-info-wrap .infobutton a:first-child:hover {
+      color: #555555; }
 
 img {
   max-width: 100%; }
@@ -444,4 +467,21 @@ img {
   #photo-list-wrap .weui-media-box_text .views img {
     max-width: 100%; }
 
-/*# sourceMappingURL=app.f8753bdc9f109b053b8fdef3161deb51.css.map*/
+.my-shake {
+  min-height: 100vh; }
+  .my-shake .left-label {
+    font-weight: normal;
+    text-align: right;
+    width: 122px;
+    padding-right: 15px; }
+  .my-shake .table {
+    margin-bottom: 0px; }
+  .my-shake .table tr td {
+    border: none; }
+  .my-shake .my-shake-bindlist .left-label {
+    width: 110px;
+    padding-right: 10px; }
+  .my-shake .my-shake-bindlist .myshake-project-link {
+    color: #FF6600; }
+
+/*# sourceMappingURL=app.4e78cdb22159c6c44ea4ca632905213c.css.map*/
