@@ -11,7 +11,7 @@ export const PASSWORD_ERROR = 40101 // 失败，密码错误
 export const CODE_ERROR_NOT_REGIST = 40105 // 该账号未注册
 export const NO_MANAGE_PERMISION = 40300// 失败，无管理权限
 
-export const NOT_LOGIN_CODE = 40100 // 未登录
+export const NOT_LOGIN_CODE = 401 // 未登录
 export const NOT_LOGIN_STATUS = 401// 未登录
 
 // 1 即将预售； 2 正在报名； 3 报名结束； 4 已复核； 5 正在摇号； 6 已摇号
