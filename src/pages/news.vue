@@ -57,6 +57,9 @@
       this.getInfoList()
       var self = this
       scrollFun = function () {
+        if (self.$route.name !== 'news') {
+          return
+        }
         let scrollTop = $(this).scrollTop()
         let scrollHeight = $(document).height()
         let windowHeight = $(this).height()

@@ -96,7 +96,8 @@
             </div>
           </div>
           <div class="weui-cell infobutton">
-            <a href="javascript:;" class="weui-btn weui-btn_primary" @click="getNewBindList">确定</a>
+            <div v-if="!userInfoList.length">您还没有录入身份信息，<router-link :to="{name: 'personalInfo'}" class="write-info">去录入</router-link></div>
+            <a href="javascript:;" class="weui-btn weui-btn_primary" v-if="userInfoList.length" @click="getNewBindList">确定</a>
           </div>
         </div>
       </div>

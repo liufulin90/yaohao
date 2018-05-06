@@ -112,6 +112,10 @@
 
       var self = this
       scrollFun = function () {
+        if (self.$route.name !== 'projectSearch') {
+          return
+        }
+        console.log('this.$route', self.$route)
         let scrollTop = $(this).scrollTop()
         let scrollHeight = $(document).height()
         let windowHeight = $(this).height()
@@ -124,6 +128,7 @@
       $(window).bind('scroll', scrollFun)
     },
     beforeDestroy () {
+      console.log('beforeDestroy')
       $(window).unbind('scroll', scrollFun)
     },
     beforeRouteLeave (to, from, next) {

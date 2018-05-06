@@ -208,6 +208,9 @@
       }
       var self = this
       scrollFun = function () {
+        if (self.$route.name !== 'index') {
+          return
+        }
         let scrollTop = $(this).scrollTop()
         let scrollHeight = $(document).height()
         let windowHeight = $(this).height()

@@ -36,7 +36,9 @@
     </div>
     <!-- 我绑定的楼盘编码List-->
     <div class="weui-panel weui-panel_access my-shake-bindlist">
-      <div class="weui-panel__hd">我绑定的楼盘</div>
+      <div class="weui-panel__hd">我绑定的楼盘
+      <router-link :to="{name: 'projectSearch'}" v-if="!bindList.length" class="find-project">找楼盘</router-link>
+      </div>
       <div class="weui-panel__bd">
         <div class="item">
           <table class="table" v-if="bindList.length">
@@ -56,7 +58,7 @@
             </tbody>
           </table>
         </div>
-        <div v-if="!bindList.length" class="pading-10 t-c">您还没有绑定任何楼盘！</div>
+        <div v-if="!bindList.length" class="pading-10 t-c">您还没有绑定任何楼盘，快去搜索一个楼盘绑定吧！</div>
       </div>
     </div>
     <v-footer :page="navPage"></v-footer>

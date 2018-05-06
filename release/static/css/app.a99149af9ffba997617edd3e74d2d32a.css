@@ -444,6 +444,10 @@ body {
     .personal-info-wrap .infobutton a:first-child:focus,
     .personal-info-wrap .infobutton a:first-child:hover {
       color: #555555; }
+  .project-wrap .infobutton .write-info,
+  .personal-info-wrap .infobutton .write-info {
+    color: #FF6600;
+    text-decoration: underline; }
 
 img {
   max-width: 100%; }
@@ -483,5 +487,9 @@ img {
     padding-right: 10px; }
   .my-shake .my-shake-bindlist .myshake-project-link {
     color: #FF6600; }
+  .my-shake .my-shake-bindlist .find-project {
+    float: right;
+    color: #FF6600;
+    text-decoration: underline; }
 
-/*# sourceMappingURL=app.0b5a7023cc6cea9e98d9467d880efc2e.css.map*/
+/*# sourceMappingURL=app.a99149af9ffba997617edd3e74d2d32a.css.map*/

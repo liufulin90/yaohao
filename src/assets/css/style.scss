@@ -365,7 +365,10 @@ body {
       color: $BASE_FONT_COLOR;
     }
   }
-
+  .write-info{
+    color: $BASE_ACTIVE_COLOR;
+    text-decoration: underline;
+  }
 }
 // 楼盘相册
 
@@ -424,6 +427,11 @@ img{
     }
     .myshake-project-link {
       color: $BASE_ACTIVE_COLOR;
+    }
+    .find-project{
+      float: right;
+      color: $BASE_ACTIVE_COLOR;
+      text-decoration: underline;
     }
   }
 }

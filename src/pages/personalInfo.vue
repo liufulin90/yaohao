@@ -187,6 +187,10 @@
         this.formIsShow = false
         */
         // 操作数据库
+        if (!this.form.name) {
+          this.CHANGE_TOAST(MSG.USER_NAME_ERROR_MSG)
+          return
+        }
         if (!jst.isIdentityCard(this.form.id_no)) {
           this.CHANGE_TOAST(MSG.IDENTITY_CARD_ERROR_MSG)
           return
