@@ -65,8 +65,34 @@ export const HOME_STATUS_MAPPING = [
     text: '最新摇号'
   }
 ]
-export const HOME_ADDR_MAP = ['天府新区', '高新区', '主城区', '郊区']
 
+export const HOME_ADDR_MAP = ['天府新区', '高新区', '其它限购区', '非限购区']
+export const HOME_OHTER_ADDR_MAP = {
+  '其它限购区': [
+    '锦江区',
+    '青羊区',
+    '金牛区',
+    '武侯区',
+    '成华区'
+  ],
+  '非限购区': [
+    '龙泉驿区',
+    '青白江区',
+    '新都区',
+    '温江区',
+    '金堂县',
+    '双流区',
+    '郫都区',
+    '大邑县',
+    '蒲江县',
+    '新津县',
+    '都江堰市',
+    '彭州市',
+    '邛崃市',
+    '崇州市',
+    '简阳市'
+  ]
+}
 export const PROJECT_BASE_INFO_KEY = '基础信息'
 export const PROJECT_SEVICE_INFO_KEY = '物业信息'
 export const PROJECT_SALE_INFO_KEY = '销售信息'
