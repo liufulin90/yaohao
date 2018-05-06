@@ -28,21 +28,21 @@ export default [
     component: resolve => require(['../pages/myShake'], resolve)
   },
   {
-    path: '/news', // 咨询
+    path: '/news', // 资讯
     name: 'news',
     meta: {
       auth: false,
-      title: '咨询',
+      title: '资讯',
       keepAlive: true
     },
     component: resolve => require(['../pages/news'], resolve)
   },
   {
-    path: '/newsDetail', // 咨询详情
+    path: '/newsDetail', // 资讯详情
     name: 'newsDetail',
     meta: {
       auth: false,
-      title: '咨询详情'
+      title: '资讯详情'
     },
     component: resolve => require(['../pages/newsDetail'], resolve)
   },

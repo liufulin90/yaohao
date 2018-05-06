@@ -1,10 +1,10 @@
-<!-- 咨询 -->
+<!-- 资讯 -->
 <template>
   <div class="body-wrapper fix-wrapper news-wrap">
     <div class="weui-form-preview">
       <div class="weui-form-preview__ft">
         <a href="javascript:;" data-type="" @click="changeNews" class="weui-form-preview__btn weui-form-preview__btn_primary">
-          全部咨询
+          全部资讯
         </a>
         <a href="javascript:;" data-type="policy" @click="changeNews" class="weui-form-preview__btn weui-form-preview__btn_primary">
           房市政策
@@ -45,7 +45,7 @@
       return {
         navPage: 3,
         isSearch: false,
-        titleTips: '全部咨询',
+        titleTips: '全部资讯',
         type: '',
         page: 1,
         hasMore: true, // 滚动页面是否还有更多内容
@@ -86,7 +86,7 @@
         } else if (this.type == 'announcement') {
           this.titleTips = '公示公告'
         } else {
-          this.titleTips = '全部咨询'
+          this.titleTips = '全部资讯'
         }
         this.getInfoList()
       },

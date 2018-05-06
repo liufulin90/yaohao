@@ -6,7 +6,7 @@ import {apiUrlConfig} from '../config/ApiConfig'
 
 class InformationService {
   /**
-   * 咨询列表
+   * 资讯列表
    * @param data
    * @returns {Promise.<TResult>|*}
    */
@@ -15,7 +15,7 @@ class InformationService {
     return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
   }
   /**
-   * 咨询信息
+   * 资讯信息
    * @param data
    * @returns {Promise.<TResult>|*}
    */

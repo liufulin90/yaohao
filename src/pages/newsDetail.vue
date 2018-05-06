@@ -1,4 +1,4 @@
-<!-- 咨询详情 -->
+<!-- 资讯详情 -->
 <template>
   <div class="body-wrapper" id="information">
     <div class="content-wrap">
