@@ -38,7 +38,7 @@
         <tr v-for="item in list">
           <td>
             <div>
-              <label for="" class="left-label">选房顺序：</label>{{item.status == 1 ? item.apply_sort : '未知'}}
+              <label for="" class="left-label">选房顺序：</label>{{item.apply_sort ? item.apply_sort : '未知'}}
             </div>
             <div>
               <label for="" class="left-label">公正摇号编码：</label>{{item.apply_no}}
