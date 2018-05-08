@@ -50,23 +50,26 @@
             this.hasInfo = false
             var data = res.info
             for (var its in data) {
-              data[its].forEach((item) => {
-                return Object.assign(item, {
-                  src: item.image,
-                  msrc: item.image,
-                  alt: item.title,
-                  title: item.title,
-                  w: 485,
-                  h: 530
+              if (typeof data[its] === 'object') {
+                data[its].forEach((item) => {
+                  return Object.assign(item, {
+                    src: item.image,
+                    msrc: item.image,
+                    alt: item.title,
+                    title: item.title,
+                    w: 485,
+                    h: 530
+                  })
                 })
-              })
-              this.hasInfo = true
+                this.hasInfo = true
+              }
             }
             this.photoInfo = data
           } else {
             this.CHANGE_TOAST(res.msg)
           }
-        }).catch(() => {
+        }).catch((err) => {
+          console.log(err)
           this.CHANGE_PENDING(false)
           this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
         })
