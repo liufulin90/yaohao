@@ -132,7 +132,7 @@
   import { swiper, swiperSlide } from 'vue-awesome-swiper'
   import * as MSG from '../config/messages'
   import * as CODE from '../config/code'
-  import {PATH_PAGE_MAPPING, PAGE_SIZE} from '../config/'
+  import {PATH_PAGE_MAPPING, PAGE_SIZE, REDIRECT_URL_KEY} from '../config/'
   import {CHANGE_PENDING, CHANGE_TOAST} from 'store/globalStore'
   import {PROJECT_LIST, BANNER_LIST} from 'store/modules/projectStore'
   import * as $ from 'jquery'
@@ -177,6 +177,14 @@
             image: '/static/resource.jpg',
             title: '保利国宾首府'
           }]
+      }
+    },
+    beforeCreate () {
+      // 后台重定向的url记录并跳转
+      var redirectUrl = localStorage.getItem(REDIRECT_URL_KEY)
+      if (redirectUrl !== 'null') {
+        localStorage.setItem(REDIRECT_URL_KEY, 'null')
+        location.href = redirectUrl
       }
     },
     mounted () {

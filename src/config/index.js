@@ -8,6 +8,7 @@ export const TINY_PAGE_SIZE = 5 // 小分页大小 pageSize（用于推送条件
 export const USER_LOCALSTORAGE_KEY = 'yaohaoUser' // 用户登录本地存储的key
 
 export const USER_INFO_KEY = 'yaohao_user_info' // 存储个人中心的用户信息
+export const REDIRECT_URL_KEY = 'redirectUrlKey' // 重定向url key
 
 export const USERNAME_PATTERN = /^(?:\d|[a-zA-Z]|[!@$%^&*]){6,16}$/ // 用户名验证正则
 

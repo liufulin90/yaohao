@@ -4,6 +4,7 @@
  */
 import * as $ from 'jquery'
 import * as CODE from '../config/code'
+import { REDIRECT_URL_KEY } from '../config/'
 import { globalErrorPrint } from './index'
 
 /**
@@ -58,6 +59,7 @@ const Ajax = ({url, method = 'POST', data = '', timeout = 20000, async = true, d
       // 没有登录则跳转到登录页面
       if (res.status === CODE.NOT_LOGIN_STATUS || res && res.responseJSON && res.responseJSON.code === CODE.NOT_LOGIN_CODE) {
         globalErrorPrint(res)
+        localStorage.setItem(REDIRECT_URL_KEY, location.href)
         location.href = '/api/v1/wechat/oauth'
       } else {
         defer.resolve(res)

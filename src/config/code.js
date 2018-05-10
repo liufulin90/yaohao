@@ -32,7 +32,7 @@ export const STATUS_MAPPING = {
   },
   status3: {
     code: 3,
-    text: '即将预售'
+    text: '现场核验'
   },
   status4: {
     code: 4,
