@@ -39,6 +39,7 @@ Object.keys(components).forEach((key) => {
 
 Vue.use(VueRouter)
 const router = new VueRouter({
+  mode: 'history', // 加上这句去掉url中的锚点
   routes,
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
