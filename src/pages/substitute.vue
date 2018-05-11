@@ -7,6 +7,7 @@
       </div>
       <vue-preview :slides="slide1"></vue-preview>
     </div>
+    <v-homeicon></v-homeicon>
   </div>
 </template>
 <script>

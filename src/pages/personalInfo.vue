@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-
+    <v-homeicon></v-homeicon>
   </div>
 </template>
 <script>

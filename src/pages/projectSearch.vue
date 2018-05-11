@@ -59,6 +59,7 @@
       <div v-if="!list.length" class="t-c">没找到你想要的呢！</div>
     </div>
     <!-- 列表end -->
+    <v-homeicon></v-homeicon>
   </div>
 </template>
 <script>

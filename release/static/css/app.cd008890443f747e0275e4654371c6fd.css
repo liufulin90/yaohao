@@ -82,6 +82,15 @@
   padding: 2px 3px;
 }
 
+.home-icon {
+  width: 28px;
+  height: 28px;
+  position: fixed;
+  right: 15px;
+  bottom: 60px;
+  z-index: 1000;
+}
+
 @font-face {
   font-family: "iconfont";
 }
@@ -492,4 +501,4 @@ img {
     color: #FF6600;
     text-decoration: underline; }
 
-/*# sourceMappingURL=app.a99149af9ffba997617edd3e74d2d32a.css.map*/
+/*# sourceMappingURL=app.cd008890443f747e0275e4654371c6fd.css.map*/

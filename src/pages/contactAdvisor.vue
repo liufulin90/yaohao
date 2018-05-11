@@ -35,6 +35,7 @@
           </div>
         </div>
       </div>
+    <v-homeicon></v-homeicon>
     </div>
   </div>
 </template>

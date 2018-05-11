@@ -10,6 +10,7 @@
       </div>
     </div>
     <div v-if="!hasInfo" class="t-c pading-t20">该项目还没有上传户型图</div>
+    <v-homeicon></v-homeicon>
   </div>
 </template>
 <style scoped>

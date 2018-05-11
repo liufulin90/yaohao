@@ -2,6 +2,7 @@
 <template>
   <div class="body-wrapper">
     template
+    <v-homeicon></v-homeicon>
   </div>
 </template>
 <script>

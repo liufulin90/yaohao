@@ -6,6 +6,7 @@
       <div class="date">发布时间：{{detail.create_time ? jst.timestampFormat(Number(detail.create_time), 'Y-m-d H:i:s') : jst.getNowTimeFormat()}}</div>
       <div class="content" v-html="detail.content"></div>
     </div>
+    <v-homeicon></v-homeicon>
   </div>
 </template>
 <script>
