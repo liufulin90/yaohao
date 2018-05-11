@@ -58,6 +58,7 @@
       </table>
       <div v-if="!list.length" class="t-c pading-t20">没找到你想要的呢！</div>
     </div>
+    <v-homeicon></v-homeicon>
   </div>
 </template>
 <script>
