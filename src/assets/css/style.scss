@@ -161,6 +161,7 @@ body {
             .status{
               @extend .baseStatus;
               color: $BASE_ACTIVE_COLOR;
+              margin-right: 6px;
             }
           }
           >div{

@@ -302,7 +302,8 @@ body {
     color: #555555;
     margin-bottom: 5px; }
   .body-wrapper .projectlist.weui-panel .weui-panel__bd .weui-media-box__bd .item_status .status {
-    color: #FF6600; }
+    color: #FF6600;
+    margin-right: 6px; }
   .body-wrapper .projectlist.weui-panel .weui-panel__bd .weui-media-box__bd > div {
     line-height: 1.6; }
   .body-wrapper .weui-search-bar__cancel-btn {
@@ -501,4 +502,4 @@ img {
     color: #FF6600;
     text-decoration: underline; }
 
-/*# sourceMappingURL=app.cd008890443f747e0275e4654371c6fd.css.map*/
+/*# sourceMappingURL=app.f30dfac337990a192cacf304b22a4f01.css.map*/
