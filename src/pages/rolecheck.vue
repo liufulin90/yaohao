@@ -11,13 +11,14 @@
       </ul>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div style="padding: 20px;margin-top: 10px">
-        <p>11区：<br>成都高新区西部园区、锦江区、青羊区、金牛区、武侯区、成华区、龙泉驿区、新都区、文件区、双流区、郫都区</p>
+        <p>11区：<br>成都高新区西部园区、锦江区、青羊区、金牛区、武侯区、成华区、龙泉驿区、新都区、温江区、双流区、郫都区</p>
         <p>远郊县：<br>青白江区、简阳市、都江堰市、彭州市、邛崃市、崇州市、金堂县、新津县、大邑县、浦江县</p>
       </div>
     </div>
     <div class="endpage" v-if="isend">
       <div class="tips" v-if="!lastRole"><font color="red">对不起，你{{lastTips}}</font><br>请扫描二维码，代代为你做详细分析</div>
       <div class="tips" v-if="lastRole">{{specialStr ? '' : '哇！原来你有购房资格'}}<br><font color="red">{{lastTips}}</font></div>
+      <p style="width: 100%;">有 50342 人已查询</p>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div class="qrcode">
         <p>最及时最全面的购房信息，请扫下面二维码，代代拉你入购房新政解读群，还有大牛为你做详细分析。</p>
