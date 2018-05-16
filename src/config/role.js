@@ -183,11 +183,11 @@ export const TREE_01_02_01_02 = {
     lastData: '可购买远郊县住房'
   }, {
     key: 'TREE_01_02_01_02_02',
-    value: '有1套有以下自有产权住房'
+    value: '有1套及以下自有产权住房'
   }]
 }
 export const TREE_01_02_01_02_02 = {
-  parent: '有1套有以下自有产权住房',
+  parent: '有1套及以下自有产权住房',
   title: '落户成都的情况',
   data: [{
     key: 'TREE_01_02_01_02_02_01',
@@ -315,11 +315,11 @@ export const TREE_01_02_02_02 = {
     lastData: '可购买远郊县住房'
   }, {
     key: 'TREE_01_02_02_02_02',
-    value: '离异前家庭有无自有产权住房'
+    value: '离异前家庭无自有产权住房'
   }]
 }
 export const TREE_01_02_02_02_02 = {
-  parent: '离异前家庭有1套及以下自有产权住房',
+  parent: '离异前家庭无自有产权住房',
   title: '落户成都的情况',
   data: [{
     key: 'TREE_01_02_02_02_02_01',
@@ -375,12 +375,12 @@ export const TREE_01_03 = {
     lastData: '可购买远郊县住房'
   }, {
     key: 'TREE_01_03_02',
-    value: '有1套有以下自有产权住房'
+    value: '有1套及以下自有产权住房'
   }]
 }
 
 export const TREE_01_03_02 = {
-  parent: '有1套有以下自有产权住房',
+  parent: '有1套及以下自有产权住房',
   title: '落户成都的情况',
   data: [{
     key: 'TREE_01_03_02_01',
