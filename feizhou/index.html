@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no">
+  <title>非洲之星</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #FFFFFF;
+    }
+    .content-padded{
+      padding: 20px;
+    }
+    h3{
+      font-weight: normal;
+      font-size: 1.6em;
+    }
+    .group-row{
+      padding: 20px 0 5px;
+      border-bottom: 1px solid #9d9d9d;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .group-row input{
+      border: none;
+      font-size: 16px;
+      height: 32px;
+    }
+    input:focus,button:focus{
+      outline: none;
+    }
+    button{
+      width: 100%;
+      height: 44px;
+      background-color: #E19D44;
+      color: #FFFFFF;
+      margin-top: 50px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button:active{
+      background-color: #D89334;
+    }
+    .disabled{
+      color: #c5c5c5;
+    }
+  </style>
+</head>
+<body>
+<div class="content-padded">
+  <div>
+    <img src="logo.png">
+  </div>
+  <h3>欢迎来到非洲之星</h3>
+  <div class="group-row">
+    <input type="number" placeholder="输入手机号" id="tel">
+  </div>
+  <div class="group-row">
+    <input type="number" placeholder="输入手机验证码" id="code">
+    <span id="getCode" pedding="false"><font></font> 获取验证码</span>
+  </div>
+  <div class="group-row">
+    <input type="password" placeholder="设置密码" id="password">
+  </div>
+  <button id="submit">注册</button>
+</div>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+  $(function () {
+    var timer = null;
+    $('#getCode').on('click', function () {
+      var self = this;
+      if ($(this).attr('pedding') == 'true') {
+        return
+      }
+      var time = 60;
+      $(this).attr('pedding', 'true').addClass('disabled');
+      $(this).find('font').html(time + 's');
+      timer = setInterval(function () {
+        if (time <= 1) {
+          clearInterval(timer);
+          $(self).find('font').html('');
+          $(self).attr('pedding', 'false').removeClass('disabled');
+          return
+        }
+        $(self).find('font').html(--time + 's');
+        console.log(time)
+      }, 1000);
+      return
+      $.ajax({
+        url: '',
+        data: {},
+        success: function (res) {
+          console.log(res)
+        },
+        error: function (res) {
+          console.log(res)
+        }
+      })
+    });
+    $('#submit').on('tap', function () {
+      var tel = $('#tel').val();
+      var code = $('#code').val();
+      var password = $('#password').val();
+      if (!tel) {
+        alert('请输入手机号')
+        return
+      }
+      if (!code) {
+        alert('请输入验证码')
+        return
+      }
+      if (!password) {
+        alert('请输入密码')
+        return
+      }
+      $.ajax({
+        url: '',
+        data: {
+          tel: tel,
+          code: code,
+          password: password
+        },
+        success: function (res) {
+          console.log(res)
+        },
+        error: function (res) {
+          console.log(res)
+        }
+      })
+    })
+  })
+</script>
+</body>
+</html>

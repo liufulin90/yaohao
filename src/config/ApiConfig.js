@@ -121,7 +121,7 @@ const apiUrlConfig = () => {
      content 是 反馈内容
      */
     feedbackAdd: `${apiRoot}/feedback/add`, // 添加意见反馈
-
+    rolecheckTimes: `${apiRoot}/rolecheck/times`, // 购房资格查询
     login: `${apiRoot}/user/login`, // 登录
     logout: `${apiRoot}/user/logout` // 退出
   }

@@ -89,7 +89,11 @@ class ProjectService {
     let url = apiUrlConfig().projectIdinfoBind
     return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
   }
-
+  // 购房资格查询次数
+  rolecheckTimes (data) {
+    let url = apiUrlConfig().rolecheckTimes
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
 }
 
 // 实例化后再导出
