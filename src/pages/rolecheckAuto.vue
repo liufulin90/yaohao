@@ -5,7 +5,7 @@
       <button @click="startSearch">立即查询</button>
     </div>
     <div v-if="start && !isend" class="rolepagewrap">
-      <div class="title">{{title}}</div>
+      <div class="title"></div>
       <ul>
         <li :data-data="item.data"
             :data-children="item.children"
