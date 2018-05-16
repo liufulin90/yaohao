@@ -44,3 +44,16 @@ npm install phantomjs-prebuilt@2.1.14 --ignore-scripts
 npm rebuild node-sass --force
 ```
 
+http://naotu.baidu.com/file/cd8bf1cd8f4c170fecb0d9d15572b7fe
+
+isy528820
+1qaz2wsX
+
+成都购房资格查询神器
+
+http://tool.ixiangzhu.cn/limit/index
+
+对不起，你暂时不具备购房资格，请扫描二维码，代代为你做详细分析
+哇！原来你有购房资格， 可购买.....
+
+最及时最全面的购房信息，请扫下面二维码，代代拉你入购房新政解读群，还有大牛为你做详细分析。

@@ -149,6 +149,15 @@ export default [
     component: resolve => require(['../pages/about'], resolve)
   },
   {
+    path: '/rolecheck', // 购房资格查询
+    name: 'rolecheck',
+    meta: {
+      auth: false,
+      title: '成都购房资格查询神器'
+    },
+    component: resolve => require(['../pages/rolecheck'], resolve)
+  },
+  {
     path: '/',
     name: 'main',
     component: resolve => require(['../pages/main'], resolve),

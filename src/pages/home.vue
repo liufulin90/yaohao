@@ -47,12 +47,13 @@
           </div>
           <p class="weui-grid__label">查询摇号结果</p>
         </router-link>
-        <router-link :to="{ name: 'substitute'}" class="weui-grid">
+        <!--substitute 资料代缴-->
+        <router-link :to="{ name: 'rolecheck'}" class="weui-grid">
           <div class="weui-grid__icon">
             <img src="../assets/icons/new-active.svg" alt="" class="loading"
                  data-was-processed="true">
           </div>
-          <p class="weui-grid__label">资料代交</p>
+          <p class="weui-grid__label">购房资格查询</p>
         </router-link>
 
         <a href="#/index" class="weui-grid" v-show="false">
