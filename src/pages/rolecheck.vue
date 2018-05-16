@@ -21,11 +21,10 @@
       <p style="width: 100%;" v-if="false">有 50342 人已查询</p>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div class="qrcode">
-        <p>最及时最全面的购房信息，请扫下面二维码，代代拉你入购房新政解读群，还有大牛为你做详细分析。</p>
-        <img src="../assets/daidai_qrcode.png" >
-        <br>
         <br>
         <img src="../assets/artic_qrcode.png" >
+        <p>最及时最全面的购房信息，请扫下面二维码，代代拉你入购房新政解读群，还有大牛为你做详细分析。</p>
+        <img src="../assets/daidai_qrcode.png" >
       </div>
     </div>
 
