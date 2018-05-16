@@ -24,7 +24,8 @@
         <br>
         <img src="../assets/artic_qrcode.png" >
         <p>最及时最全面的购房信息，请扫下面二维码，代代拉你入购房新政解读群，还有大牛为你做详细分析。</p>
-        <img src="../assets/daidai_qrcode.png" >
+        <img style="width: 135px;" src="../assets/daidai_qrcode.png" v-if="!isYuanJiaoQu">
+        <img style="width: 135px;" src="../assets/daidai_qrcode_notrole_jiaoqu.png" v-if="isYuanJiaoQu">
       </div>
     </div>
 
@@ -44,6 +45,7 @@
         title: 'ddd',
         dataList: [],
         start: true,
+        isYuanJiaoQu: false, // 是否为远郊县和无资格
         isend: false,
         lastRole: false,
         lastTips: '暂时不具备购房资格',
@@ -76,6 +78,12 @@
             this.specialStr = false
             this.lastTips = e.target.dataset.lastdata
           }
+          if (!this.lastRole || e.target.dataset.lastdata.indexOf('+') < 0) {
+            // 无资格 和 只能购买远郊县
+            this.isYuanJiaoQu = true
+          } else {
+            this.isYuanJiaoQu = false
+          }
           return
         }
         var nextData = role[e.target.dataset.key]
@@ -89,6 +97,7 @@
         this.isend = false
         this.lastTips = '暂时不具备购房资格'
         this.specialStr = false
+        this.isYuanJiaoQu = false
       }
     }
   }
