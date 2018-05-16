@@ -18,7 +18,7 @@
     <div class="endpage" v-if="isend">
       <div class="tips" v-if="!lastRole"><font color="red">对不起，你{{lastTips}}</font><br>请扫描二维码，代代为你做详细分析</div>
       <div class="tips" v-if="lastRole">{{specialStr ? '' : '哇！原来你有购房资格'}}<br><font color="red">{{lastTips}}</font></div>
-      <p style="width: 100%;">有 50342 人已查询</p>
+      <p style="width: 100%;" v-if="false">有 50342 人已查询</p>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div class="qrcode">
         <p>最及时最全面的购房信息，请扫下面二维码，代代拉你入购房新政解读群，还有大牛为你做详细分析。</p>
