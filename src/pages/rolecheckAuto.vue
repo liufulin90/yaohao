@@ -7,7 +7,10 @@
     <div v-if="start && !isend" class="rolepagewrap">
       <div class="title">{{title}}</div>
       <ul>
-        <li :data-key="item.key" :data-value="item.value" :data-lastrole="item.lastRole ? item.lastRole : ''" :data-lastdata="item.lastData ? item.lastData : ''" v-for="item in dataList" @click="nextPage">{{item.value}}</li>
+        <li :data-data="item.data"
+            :data-children="item.children"
+            :children="item.children"
+            v-for="item in dataList" @click="nextPage($event, item.data, item.children)">{{item.data ? item.data.text : ''}}</li>
       </ul>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div style="padding: 20px;margin-top: 10px">
@@ -16,8 +19,8 @@
       </div>
     </div>
     <div class="endpage" v-if="isend">
-      <div class="tips" v-if="!lastRole"><font color="red">对不起，你{{lastTips}}</font><br>请扫描二维码，代代为你做详细分析</div>
-      <div class="tips" v-if="lastRole">{{specialStr ? '' : '哇！原来你有购房资格'}}<br><font color="red">{{lastTips}}</font></div>
+      <div class="tips" v-if="!lastRole"><font color="red">对不起，{{lastTips}}</font><br>请扫描二维码，代代为你做详细分析</div>
+      <div class="tips" v-if="lastRole">{{specialStr ? '' : '哇！原来你有购房资格'}}<br v-if="!specialStr"><font color="red">{{lastTips}}</font></div>
       <p style="width: 100%;" >有 {{searchNumber}} 人已查询</p>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div class="qrcode">
@@ -37,7 +40,7 @@
 <script>
   import {mapActions} from 'vuex'
   import {CHANGE_PENDING, CHANGE_TOAST} from 'store/globalStore'
-  import {ROLE_CHECK_TIMES} from '../store/modules/projectStore'
+  import {ROLE_CHECK_TIMES, ROLE_CHECK_DATA} from '../store/modules/projectStore'
   import * as role from '../config/role'
   import * as MSG from '../config/messages'
   import * as CODE from '../config/code'
@@ -47,6 +50,7 @@
       return {
         searchNumber: 5000,
         title: 'ddd',
+        initTree: [],
         dataList: [],
         start: true,
         isYuanJiaoQu: false, // 是否为远郊县和无资格
@@ -59,30 +63,34 @@
     mounted () {
       this.dataList = role.TREE.data
       this.title = role.TREE.title
+      this.getInitData()
       this.searchTimesAdd()
     },
     methods: {
-      ...mapActions([CHANGE_PENDING, CHANGE_TOAST, ROLE_CHECK_TIMES]),
+      ...mapActions([CHANGE_PENDING, CHANGE_TOAST, ROLE_CHECK_TIMES, ROLE_CHECK_DATA]),
       startSearch () {
         this.start = true
       },
-      nextPage (e) {
+      nextPage (e, data, children) {
         console.log(e.target.dataset)
-        if (e.target.dataset.lastdata) {
-          if (e.target.dataset.lastrole) {
-            this.lastRole = false
-          } else {
-            this.lastRole = true
-          }
+        console.log(data)
+        console.log(children)
+        if (children.length == 1 && children[0].children.length < 1) {
           this.isend = true
-          if (e.target.dataset.lastdata == '可购买远郊县住房') {
+          var lastText = children[0].data.text
+          if (lastText == '可购买远郊县住房') {
             this.specialStr = true
             this.lastTips = '您目前只能购买远郊(三圈层)房屋'
           } else {
             this.specialStr = false
-            this.lastTips = e.target.dataset.lastdata
+            this.lastTips = lastText
           }
-          if (!this.lastRole || e.target.dataset.lastdata.indexOf('+') < 0) {
+          if (lastText.indexOf('成都市购房资') > 0) {
+            this.lastRole = false
+          } else {
+            this.lastRole = true
+          }
+          if (lastText.indexOf('成都市购房资') > 0 || lastText.indexOf('+') < 0) {
             // 无资格 和 只能购买远郊县
             this.isYuanJiaoQu = true
           } else {
@@ -90,13 +98,10 @@
           }
           return
         }
-        var nextData = role[e.target.dataset.key]
-        this.dataList = nextData.data
-        this.title = nextData.title
+        this.dataList = children
       },
       resetSearch () {
-        this.dataList = role.TREE.data
-        this.title = role.TREE.title
+        this.dataList = this.initTree
         this.lastRole = false
         this.isend = false
         this.lastTips = '暂时不具备购房资格'
@@ -110,6 +115,21 @@
           this.CHANGE_PENDING(false)
           if (CODE.SUCCESS == res.status && !res.errno) {
             this.searchNumber = res.info.times
+          } else {
+            this.CHANGE_TOAST(res.msg)
+          }
+        }).catch(() => {
+          this.CHANGE_PENDING(false)
+          this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
+        })
+      },
+      getInitData () {
+        this.CHANGE_PENDING(true)
+        this.ROLE_CHECK_DATA({}).then(res => {
+          this.CHANGE_PENDING(false)
+          if (CODE.SUCCESS == res.status && !res.errno) {
+            this.initTree = res.info.root.children
+            this.dataList = this.initTree
           } else {
             this.CHANGE_TOAST(res.msg)
           }

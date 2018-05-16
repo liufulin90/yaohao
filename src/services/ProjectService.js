@@ -94,6 +94,11 @@ class ProjectService {
     let url = apiUrlConfig().rolecheckTimes
     return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
   }
+  // 购房资格树形结构
+  rolecheckData (data) {
+    let url = apiUrlConfig().rolecheckData
+    return Ajax({url: url, data: data, method: 'GET'}).then(response => response)
+  }
 }
 
 // 实例化后再导出

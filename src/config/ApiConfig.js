@@ -122,6 +122,7 @@ const apiUrlConfig = () => {
      */
     feedbackAdd: `${apiRoot}/feedback/add`, // 添加意见反馈
     rolecheckTimes: `${apiRoot}/rolecheck/times`, // 购房资格查询
+    rolecheckData: `${apiRoot}/rolecheck/data`, // 购房资格树形结构
     login: `${apiRoot}/user/login`, // 登录
     logout: `${apiRoot}/user/logout` // 退出
   }

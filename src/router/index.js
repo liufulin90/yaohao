@@ -155,7 +155,7 @@ export default [
       auth: false,
       title: '成都购房资格查询神器'
     },
-    component: resolve => require(['../pages/rolecheck'], resolve)
+    component: resolve => require(['../pages/rolecheckAuto'], resolve)
   },
   {
     path: '/',

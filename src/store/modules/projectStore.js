@@ -16,6 +16,7 @@ export const PROJECT_IDINFO_BIND = 'PROJECT_IDINFO_BIND' // 绑定用户身份�
 export const PROJECT_IDINFO_DELETE = 'PROJECT_IDINFO_DELETE' // 删除已绑定到楼盘的身份信息
 export const PROJECT_IDINFO_LIST = 'PROJECT_IDINFO_LIST' // 查询已绑定到楼盘的身份信息
 export const ROLE_CHECK_TIMES = 'ROLE_CHECK_TIMES' // 购房资格查询次数
+export const ROLE_CHECK_DATA = 'ROLE_CHECK_DATA' // 购房资格树形结构
 
 export default {
   state: {},
@@ -72,6 +73,8 @@ export default {
       })
     },
     [ROLE_CHECK_TIMES] (state, payload) {
+    },
+    [ROLE_CHECK_DATA] (state, payload) {
     }
   },
   actions: {
@@ -149,6 +152,12 @@ export default {
     [ROLE_CHECK_TIMES] ({commit}, payload) {
       return ProjectService.rolecheckTimes(payload).then((res) => {
         commit(ROLE_CHECK_TIMES, payload)
+        return res
+      })
+    },
+    [ROLE_CHECK_DATA] ({commit}, payload) {
+      return ProjectService.rolecheckData(payload).then((res) => {
+        commit(ROLE_CHECK_DATA, payload)
         return res
       })
     }
