@@ -7,10 +7,7 @@
     <div v-if="start && !isend" class="rolepagewrap">
       <div class="title"></div>
       <ul>
-        <li :data-data="item.data"
-            :data-children="item.children"
-            :children="item.children"
-            v-for="item in dataList" @click="nextPage($event, item.data, item.children)">{{item.data ? item.data.text : ''}}</li>
+        <li v-for="item in dataList" @click="nextPage($event, item.data, item.children)">{{item.data ? item.data.text : ''}}</li>
       </ul>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div style="padding: 20px;margin-top: 10px">
@@ -72,7 +69,6 @@
         this.start = true
       },
       nextPage (e, data, children) {
-        console.log(e.target.dataset)
         console.log(data)
         console.log(children)
         if (children.length == 1 && children[0].children.length < 1) {
@@ -85,12 +81,12 @@
             this.specialStr = false
             this.lastTips = lastText
           }
-          if (lastText.indexOf('成都市购房资') > 0) {
+          if (lastText.indexOf('无购房资格') > 0 || lastText.indexOf('单独家庭购房') > 0) {
             this.lastRole = false
           } else {
             this.lastRole = true
           }
-          if (lastText.indexOf('成都市购房资') > 0 || lastText.indexOf('+') < 0) {
+          if (lastText.indexOf('无购房资格') > 0 || lastText.indexOf('+') < 0 || lastText.indexOf('单独家庭购房') > 0) {
             // 无资格 和 只能购买远郊县
             this.isYuanJiaoQu = true
           } else {
