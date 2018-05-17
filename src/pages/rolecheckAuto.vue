@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="endpage" v-if="isend">
-      <div class="tips" v-if="progress == 1">哇！原来你有购房资格<br><font color="red">{{lastTips}}</font></div>
+      <div class="tips" v-if="progress == 1">哇~ 您有购房资格<br><font color="red">{{lastTips}}</font></div>
       <div class="tips" v-if="progress == 2"><font color="red">{{progressMap[progress]}}</font></div>
       <div class="tips" v-if="progress == 3"><font color="red">{{progressMap[progress]}}</font><br>请扫描二维码，代代为你做详细分析</div>
       <p style="width: 100%;" >有 {{searchNumber}} 人已查询</p>
