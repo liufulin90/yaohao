@@ -5,7 +5,7 @@
       <button @click="startSearch">立即查询</button>
     </div>
     <div v-if="start && !isend" class="rolepagewrap">
-      <div class="title"></div>
+      <div class="title">{{priority ? priorityMap[priority] : ''}}</div>
       <ul>
         <li v-for="item in dataList" @click="nextPage($event, item.data, item.children)">{{item.data ? item.data.text : ''}}</li>
       </ul>
@@ -16,8 +16,9 @@
       </div>
     </div>
     <div class="endpage" v-if="isend">
-      <div class="tips" v-if="!lastRole"><font color="red">对不起，{{lastTips}}</font><br>请扫描二维码，代代为你做详细分析</div>
-      <div class="tips" v-if="lastRole">{{specialStr ? '' : '哇！原来你有购房资格'}}<br v-if="!specialStr"><font color="red">{{lastTips}}</font></div>
+      <div class="tips" v-if="progress == 1">哇！原来你有购房资格<br><font color="red">{{lastTips}}</font></div>
+      <div class="tips" v-if="progress == 2"><font color="red">{{progressMap[progress]}}</font></div>
+      <div class="tips" v-if="progress == 3"><font color="red">{{progressMap[progress]}}</font><br>请扫描二维码，代代为你做详细分析</div>
       <p style="width: 100%;" >有 {{searchNumber}} 人已查询</p>
       <button class="resetBtn" @click="resetSearch">重新查询</button>
       <div class="qrcode">
@@ -54,12 +55,30 @@
         isend: false,
         lastRole: false,
         lastTips: '暂时不具备购房资格',
+        priorityMap: {
+          '1': '您的户籍情况？',
+          '2': '您想以哪种方式购房？',
+          '3': '您的社保缴纳情况？',
+          '4': '您的家庭情况？',
+          '5': '您家庭的住房情况？',
+          '6': '您落户是否已满两年？',
+          '7': '您的户口在哪个区？',
+          '8': '您是否带有子女？'
+        },
+        priority: 1,
+        progressMap: {
+          '1': '哇~ 您有购房资格',
+          '2': '您目前只能购买远郊(三圈层)房屋。',
+          '3': '很遗憾，你被限购！'
+        },
+        progress: 3,
         specialStr: false
       }
     },
     mounted () {
       this.dataList = role.TREE.data
       this.title = role.TREE.title
+      console.log(this.priorityMap[2])
       this.getInitData()
       this.searchTimesAdd()
     },
@@ -69,28 +88,18 @@
         this.start = true
       },
       nextPage (e, data, children) {
+        this.priority = data.priority
         console.log(data)
-        console.log(children)
         if (children.length == 1 && children[0].children.length < 1) {
+          this.progress = children[0].data.progress
           this.isend = true
-          var lastText = children[0].data.text
-          if (lastText == '可购买远郊县住房') {
-            this.specialStr = true
-            this.lastTips = '您目前只能购买远郊(三圈层)房屋'
+          this.lastTips = children[0].data.text
+
+          if (this.progress == 1) {
+            this.isYuanJiaoQu = false
           } else {
-            this.specialStr = false
-            this.lastTips = lastText
-          }
-          if (lastText.indexOf('无购房资格') > 0 || lastText.indexOf('单独家庭购房') > 0) {
-            this.lastRole = false
-          } else {
-            this.lastRole = true
-          }
-          if (lastText.indexOf('无购房资格') > 0 || lastText.indexOf('+') < 0 || lastText.indexOf('单独家庭购房') > 0) {
             // 无资格 和 只能购买远郊县
             this.isYuanJiaoQu = true
-          } else {
-            this.isYuanJiaoQu = false
           }
           return
         }
@@ -103,6 +112,8 @@
         this.lastTips = '暂时不具备购房资格'
         this.specialStr = false
         this.isYuanJiaoQu = false
+        this.priority = 1
+        this.progress = 3
         this.searchTimesAdd()
       },
       searchTimesAdd () {
@@ -126,6 +137,7 @@
           if (CODE.SUCCESS == res.status && !res.errno) {
             this.initTree = res.info.root.children
             this.dataList = this.initTree
+            this.priority = res.info.root.data.priority
           } else {
             this.CHANGE_TOAST(res.msg)
           }

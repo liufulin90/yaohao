@@ -44,16 +44,31 @@ npm install phantomjs-prebuilt@2.1.14 --ignore-scripts
 npm rebuild node-sass --force
 ```
 
+
+priority
+1. 您的户籍情况？
+2. 您想以哪种方式购房？
+3. 您的社保缴纳情况？
+4. 您的家庭情况？
+5. 您家庭的住房情况？
+6. 您落户是否已满两年？
+7. 您的户口在哪个区？
+8. 您是否带有子女？
+
+progress
+1. 哇~ 您有购房资格，可以购买....
+2. 您目前只能购买远郊（三圈层）房屋。
+3. 很遗憾，你被限购！
+
 http://naotu.baidu.com/file/cd8bf1cd8f4c170fecb0d9d15572b7fe
-
-isy528820
-1qaz2wsX
-
+isy5288201qaz2wsX
 成都购房资格查询神器
 
 http://tool.ixiangzhu.cn/limit/index
 
 对不起，你暂时不具备购房资格，请扫描二维码，代代为你做详细分析
 哇！原来你有购房资格， 可购买.....
+
+您目前只能购买远郊(三圈层)房屋
 
 最及时最全面的购房信息，请扫下面二维码，代代拉你入购房新政解读群，还有大牛为你做详细分析。
