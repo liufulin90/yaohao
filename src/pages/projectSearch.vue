@@ -6,7 +6,7 @@
         <div class="weui-search-bar__box">
           <i class="weui-icon-search"></i>
           <input class="weui-search-bar__input" v-model="keyword" @change="searchList" placeholder="输入楼盘名称，如：中海锦江城" required="" name="keyword" type="search">
-          <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+          <a href="javascript:" class="weui-icon-clear" id="searchClear" @click="searchClear"></a>
         </div>
         <label class="weui-search-bar__label" id="searchText">
           <i class="weui-icon-search"></i>
@@ -234,6 +234,9 @@
       },
       cancleSearch () {
         this.isSearch = false
+      },
+      searchClear () {
+        this.keyword = ''
       }
     }
   }

@@ -23,7 +23,7 @@
         <div class="weui-search-bar__box">
           <i class="weui-icon-search"></i>
           <input class="weui-search-bar__input" v-model="keyword" @change="searchList" placeholder="输入身份证、登记号、摇号编号进行搜索" required="" name="keyword" type="search">
-          <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+          <a href="javascript:" class="weui-icon-clear" id="searchClear" @click="searchClear"></a>
         </div>
         <label class="weui-search-bar__label" id="searchText">
           <i class="weui-icon-search"></i>
@@ -225,6 +225,9 @@
           this.CHANGE_PENDING(false)
           this.CHANGE_TOAST(MSG.COMMONE_ERROR_MSG)
         })
+      },
+      searchClear () {
+        this.keyword = ''
       }
     }
   }
